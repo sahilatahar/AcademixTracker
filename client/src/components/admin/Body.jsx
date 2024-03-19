@@ -1,0 +1,128 @@
+import React, { useState } from "react"
+import HomeIcon from "@mui/icons-material/Home"
+import Calendar from "react-calendar"
+import EngineeringIcon from "@mui/icons-material/Engineering"
+import BoyIcon from "@mui/icons-material/Boy"
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
+import MenuBookIcon from "@mui/icons-material/MenuBook"
+import "react-calendar/dist/Calendar.css"
+import { useSelector } from "react-redux"
+import Notice from "../notices/Notice"
+import ShowNotice from "../notices/ShowNotice"
+import ReplyIcon from "@mui/icons-material/Reply"
+const Body = () => {
+    const [open, setOpen] = useState(false)
+    const [openNotice, setOpenNotice] = useState({})
+    const notices = useSelector((state) => state.admin.notices.result)
+    const [value, onChange] = useState(new Date())
+    const students = useSelector((state) => state.admin.allStudents)
+    const faculties = useSelector((state) => state.admin.allFaculties)
+    const admins = useSelector((state) => state.admin.allAdmins)
+    const departments = useSelector((state) => state.admin.allDepartments)
+
+    return (
+        <div className="mt-3 flex-[0.8]">
+            <div className="space-y-5">
+                <div className="flex items-center space-x-2 text-gray-400">
+                    <HomeIcon />
+                    <h1>Dashboard</h1>
+                </div>
+                <div className="mr-5 flex flex-col space-y-4 overflow-y-hidden">
+                    <div className="grid h-[8rem] grid-cols-4 items-center justify-between space-x-4 rounded-xl bg-white px-8 shadow-lg">
+                        <div className="flex items-center space-x-4 border-r-2">
+                            <EngineeringIcon
+                                className="rounded-full bg-orange-300 py-2"
+                                sx={{ fontSize: 40 }}
+                            />
+                            <div className="flex flex-col">
+                                <h1>Faculty</h1>
+                                <h2 className="text-2xl font-bold">
+                                    {faculties?.length}
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-4 border-r-2">
+                            <BoyIcon
+                                className="rounded-full bg-orange-300 py-2"
+                                sx={{ fontSize: 40 }}
+                            />
+                            <div className="flex flex-col">
+                                <h1>Student</h1>
+                                <h2 className="text-2xl font-bold">
+                                    {students?.length}
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-4 border-r-2">
+                            <SupervisorAccountIcon
+                                className="rounded-full bg-orange-300 py-2"
+                                sx={{ fontSize: 40 }}
+                            />
+                            <div className="flex flex-col">
+                                <h1>Admin</h1>
+                                <h2 className="text-2xl font-bold">
+                                    {admins?.length}
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-4 ">
+                            <MenuBookIcon
+                                className="rounded-full bg-orange-300 py-2"
+                                sx={{ fontSize: 40 }}
+                            />
+                            <div className="flex flex-col">
+                                <h1>Department</h1>
+                                <h2 className="text-2xl font-bold">
+                                    {departments?.length}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex space-x-4">
+                        <div className="flex w-2/6 flex-col space-y-4">
+                            <div className="h-[17rem] rounded-xl bg-white shadow-lg">
+                                <Calendar onChange={onChange} value={value} />
+                            </div>
+                        </div>
+                        <div className="flex h-[17rem] w-full flex-col rounded-xl bg-white pt-3  shadow-lg">
+                            <div className="flex px-3">
+                                {open && (
+                                    <ReplyIcon
+                                        onClick={() => setOpen(false)}
+                                        className="cursor-pointer"
+                                    />
+                                )}
+                                <h1 className="w-full text-center text-xl font-bold">
+                                    Notices
+                                </h1>
+                            </div>
+                            <div className="mx-5 mt-5 h-[12rem] space-y-3 overflow-y-auto">
+                                {!open ? (
+                                    notices?.map((notice, idx) => (
+                                        <div
+                                            onClick={() => {
+                                                setOpen(true)
+                                                setOpenNotice(notice)
+                                            }}
+                                            className=""
+                                        >
+                                            <Notice
+                                                idx={idx}
+                                                notice={notice}
+                                                notFor=""
+                                            />
+                                        </div>
+                                    ))
+                                ) : (
+                                    <ShowNotice notice={openNotice} />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Body

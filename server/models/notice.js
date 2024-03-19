@@ -1,26 +1,27 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
+const { Schema } = mongoose
 
-const noticeSchema = mongoose.Schema({
-  topic: {
-    type: String,
-    require: true,
-  },
-  date: {
-    type: String,
-    require: true,
-  },
-  content: {
-    type: String,
-    require: true,
-  },
-  from: {
-    type: String,
-    require: true,
-  },
-  noticeFor: {
-    type: String,
-    require: true,
-  },
-});
+const noticeSchema = Schema({
+	topic: {
+		type: String,
+		require: true,
+	},
+	date: {
+		type: String,
+		require: true,
+	},
+	content: {
+		type: String,
+		require: true,
+	},
+	from: {
+		type: String,
+		require: true,
+	},
+	noticeFor: {
+		type: String,
+		require: true,
+	},
+})
 
-export default mongoose.model("notice", noticeSchema);
+export default mongoose.model("notice", noticeSchema)

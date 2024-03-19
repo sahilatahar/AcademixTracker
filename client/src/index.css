@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .heading-1 {
+        @apply py-8 text-center text-3xl font-semibold text-black md:pt-0 md:text-4xl;
+    }
+
+    .input-field {
+        @apply w-full rounded-md border border-gray-500 px-3 py-3 focus:border-primary focus:outline-none;
+    }
+
+    .btn-primary {
+        @apply mt-2 w-full rounded-md bg-primary px-8 py-3 text-lg font-semibold text-black;
+    }
+
+    .btn-register {
+        @apply mt-8 w-full rounded-lg bg-primary px-8 py-3 text-lg font-semibold text-black sm:w-[250px];
+    }
+}

@@ -1,56 +1,60 @@
-import express from "express";
-import auth from "../middleware/auth.js";
+import express from "express"
 import {
-  adminLogin,
-  updateAdmin,
-  addAdmin,
-  addFaculty,
-  getFaculty,
-  addSubject,
-  getSubject,
-  addStudent,
-  getStudent,
-  addDepartment,
-  getAllStudent,
-  getAllFaculty,
-  getAllAdmin,
-  getAllDepartment,
-  getAllSubject,
-  updatedPassword,
-  getAdmin,
-  deleteAdmin,
-  deleteDepartment,
-  deleteFaculty,
-  deleteStudent,
-  deleteSubject,
-  createNotice,
-  getNotice,
-} from "../controller/adminController.js";
-const router = express.Router();
-console.log("Routes Page");
-router.post("/login", adminLogin);
-router.post("/updatepassword", auth, updatedPassword);
-router.get("/getallstudent", auth, getAllStudent);
-router.post("/createnotice", auth, createNotice);
-router.get("/getallfaculty", auth, getAllFaculty);
-router.get("/getalldepartment", auth, getAllDepartment);
-router.get("/getallsubject", auth, getAllSubject);
-router.get("/getalladmin", auth, getAllAdmin);
-router.post("/updateprofile", auth, updateAdmin);
-router.post("/addadmin", auth, addAdmin);
-router.post("/adddepartment", auth, addDepartment);
-router.post("/addfaculty", auth, addFaculty);
-router.post("/getfaculty", auth, getFaculty);
-router.post("/addsubject", auth, addSubject);
-router.post("/getsubject", auth, getSubject);
-router.post("/addstudent", auth, addStudent);
-router.post("/getstudent", auth, getStudent);
-router.post("/getnotice", auth, getNotice);
-router.post("/getadmin", auth, getAdmin);
-router.post("/deleteadmin", auth, deleteAdmin);
-router.post("/deletefaculty", auth, deleteFaculty);
-router.post("/deletestudent", auth, deleteStudent);
-router.post("/deletedepartment", auth, deleteDepartment);
-router.post("/deletesubject", auth, deleteSubject);
+	addAdmin,
+	addDepartment,
+	addFaculty,
+	addStudent,
+	updateStudent,
+	addSubject,
+	adminLogin,
+	createNotice,
+	updateNotice,
+	deleteAdmin,
+	deleteDepartment,
+	deleteFaculty,
+	deleteStudent,
+	deleteSubject,
+	getAdmins,
+	getAllAdmins,
+	getDepartments,
+	getAllFaculties,
+	getAllStudents,
+	getAllSubjects,
+	getFaculties,
+	getNotices,
+	getStudents,
+	getSubjects,
+	updateAdmin,
+	updateAdminPassword,
+} from "../controller/adminController.js"
+import auth from "../middleware/auth.js"
+const router = express.Router()
 
-export default router;
+router.post("/login", adminLogin)
+router.put("/update-password", auth, updateAdminPassword)
+router.get("/get-all-students", auth, getAllStudents)
+router.post("/create-notice", auth, createNotice)
+router.put("/update-notice", auth, updateNotice)
+router.get("/get-all-faculties", auth, getAllFaculties)
+router.get("/get-departments", auth, getDepartments)
+router.get("/get-all-subjects", auth, getAllSubjects)
+router.get("/get-all-admins", auth, getAllAdmins)
+router.put("/update-profile", auth, updateAdmin)
+router.post("/add-admin", auth, addAdmin)
+router.post("/add-department", auth, addDepartment)
+router.post("/add-faculty", auth, addFaculty)
+router.post("/get-faculties", auth, getFaculties)
+router.post("/add-subject", auth, addSubject)
+router.post("/get-subjects", auth, getSubjects)
+router.post("/add-student", auth, addStudent)
+router.put("/update-student", updateStudent)
+router.post("/get-students", auth, getStudents)
+router.post("/get-notices", auth, getNotices)
+router.post("/get-admins", auth, getAdmins)
+router.delete("/delete-admin/:id", auth, deleteAdmin)
+router.delete("/delete-faculty/:id", auth, deleteFaculty)
+router.delete("/delete-student/:id", auth, deleteStudent)
+router.delete("/delete-department/:id", auth, deleteDepartment)
+router.delete("/delete-subject/:id", auth, deleteSubject)
+
+export default router
