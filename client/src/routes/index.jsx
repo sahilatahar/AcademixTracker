@@ -15,7 +15,7 @@ import DeleteAdmin from "../components/admin/deleteAdmin/DeleteAdmin"
 // import DeleteFaculty from "../components/admin/deleteFaculty/DeleteFaculty"
 // import DeleteStudent from "../components/admin/deleteStudent/DeleteStudent"
 // import DeleteSubject from "../components/admin/deleteSubject/DeleteSubject"
-// import CreateNotice from "../components/admin/createNotice/CreateNotice"
+import CreateNotice from "../components/admin/createNotice/CreateNotice"
 
 import AdminRegister from "../components/register/adminRegister/AdminRegister"
 // import GetStudent from "../components/admin/getStudent/GetStudent"
@@ -100,6 +100,10 @@ const routes = createBrowserRouter([
             {
                 path: "delete-admin",
                 element: <DeleteAdmin />,
+            },
+            {
+                path: "create-notice",
+                element: <CreateNotice />,
             },
         ],
     },

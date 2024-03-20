@@ -88,7 +88,7 @@ const AddAdmin = () => {
                     }
                     type="admin"
                 />
-                <div className="outlet-form-div">
+                <div className="outlet-form-div gap-6">
                     <div className="outlet-form-fields">
                         <div className="w-full">
                             <label className="input-label">Full Name</label>
@@ -205,13 +205,18 @@ const AddAdmin = () => {
                             />
                         </div>
                     </div>
-                    <button
-                        type="submit"
-                        className="btn-primary"
-                        disabled={loading}
-                    >
-                        Submit
-                    </button>
+                    <div className="form-button-group">
+                        <button type="submit" className="btn-reset-full">
+                            Reset
+                        </button>
+                        <button
+                            type="submit"
+                            className="btn-primary-full"
+                            disabled={loading}
+                        >
+                            Submit
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

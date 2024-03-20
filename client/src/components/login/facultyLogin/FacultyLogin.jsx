@@ -49,19 +49,23 @@ const FacultyLogin = () => {
         <div className="flex min-h-screen items-center justify-center">
             <form
                 onSubmit={handleSubmit}
-                className="flex w-full flex-col items-center justify-center space-y-6 p-4 md:w-[500px]"
+                className="flex w-full flex-col items-center justify-center gap-4 p-4 md:w-[500px]"
             >
                 <h1 className="pb-8 text-4xl font-semibold text-black">
                     Faculty Login
                 </h1>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    className="input-field"
-                    name="username"
-                    onChange={handleChanges}
-                />
+                <div className="w-full">
+                    <label className="input-label">Username</label>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        className="input-field"
+                        name="username"
+                        onChange={handleChanges}
+                    />
+                </div>
                 <div className="relative w-full">
+                    <label className="input-label">Password</label>
                     <input
                         placeholder="Password"
                         type={showPassword ? "text" : "password"}
@@ -71,26 +75,21 @@ const FacultyLogin = () => {
                         name="password"
                         onChange={handleChanges}
                     />
-                    <button
-                        className="absolute right-3 top-1/2 -translate-y-1/2"
-                        type="button"
-                    >
-                        {showPassword ? (
-                            <Eye
-                                size={24}
-                                onClick={togglePassword}
-                                className="cursor-pointer bg-white"
-                            />
-                        ) : (
-                            <EyeSlash
-                                size={24}
-                                onClick={togglePassword}
-                                className="cursor-pointer bg-white"
-                            />
-                        )}
-                    </button>
+                    {showPassword ? (
+                        <Eye
+                            size={24}
+                            onClick={togglePassword}
+                            className="password-eye"
+                        />
+                    ) : (
+                        <EyeSlash
+                            size={24}
+                            onClick={togglePassword}
+                            className="password-eye"
+                        />
+                    )}
                 </div>
-                <button type="submit" className="btn-primary-full w-full">
+                <button type="submit" className="btn-primary-full mt-4">
                     Login
                 </button>
             </form>

@@ -120,24 +120,19 @@ const FacultyRegister = () => {
                             onChange={handleChanges}
                             required
                         />
-                        <button
-                            className="absolute right-3 top-1/2"
-                            type="button"
-                        >
-                            {showPassword ? (
-                                <Eye
-                                    size={24}
-                                    onClick={togglePassword}
-                                    className="cursor-pointer bg-white"
-                                />
-                            ) : (
-                                <EyeSlash
-                                    size={24}
-                                    onClick={togglePassword}
-                                    className="cursor-pointer bg-white"
-                                />
-                            )}
-                        </button>
+                        {showPassword ? (
+                            <Eye
+                                size={24}
+                                onClick={togglePassword}
+                                className="cursor-pointer bg-white"
+                            />
+                        ) : (
+                            <EyeSlash
+                                size={24}
+                                onClick={togglePassword}
+                                className="cursor-pointer bg-white"
+                            />
+                        )}
                     </div>
                     <div className="w-full">
                         <label className="input-label">Department</label>

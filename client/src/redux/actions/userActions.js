@@ -9,12 +9,14 @@ import { showToast } from "../../utils/toast"
 export const fetchUser = async (userId, role, dispatch) => {
     try {
         const { data } = await API.get(`/api/${role}/${userId}`)
-        data.avatar =
-            role === "student"
-                ? studentImage
-                : role === "faculty"
-                  ? facultyImage
-                  : adminImage
+        if (!data.avatar) {
+            data.avatar =
+                role === "student"
+                    ? studentImage
+                    : role === "faculty"
+                      ? facultyImage
+                      : adminImage
+        }
         dispatch(userLogin(data))
         return true
     } catch (error) {

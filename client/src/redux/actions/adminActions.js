@@ -300,8 +300,11 @@ export const createNotice = async (formData, dispatch) => {
     try {
         const { data } = await api.createNotice(formData)
         dispatch(addNoticeAction(data.notice))
+        showToast("Notice created successfully", "success")
+        return true
     } catch (error) {
         showToast(error.response.data.message, "error")
+        return false
     }
 }
 

@@ -23,7 +23,7 @@ export const sidebarItems = [
     {
         title: "Create Notice",
         icon: <Plus size={24} weight="fill" />,
-        path: "/admin/createNotice",
+        path: "/admin/create-notice",
     },
     {},
     {

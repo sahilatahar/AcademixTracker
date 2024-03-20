@@ -8,7 +8,7 @@ import {
 import * as api from "../api/faculty"
 import { showToast } from "../../utils/toast"
 
-export const facultyLogin = (formData) => async (dispatch) => {
+export const facultyLogin = async (formData, dispatch) => {
     try {
         const { data } = await api.facultySignIn(formData)
         localStorage.setItem("token", data.token)
@@ -21,14 +21,14 @@ export const facultyLogin = (formData) => async (dispatch) => {
     }
 }
 
-export const facultyLogout = () => async (dispatch) => {
+export const facultyLogout = async (dispatch) => {
     localStorage.clear()
     dispatch(logOutAction())
     showToast("Log out successful", "success")
     return true
 }
 
-export const updateFacultyPassword = (formData) => async (dispatch) => {
+export const updateFacultyPassword = async (formData, dispatch) => {
     try {
         const { data } = await api.updateFacultyPassword(formData)
         dispatch(setFacultyAction(data.faculty))
@@ -37,7 +37,7 @@ export const updateFacultyPassword = (formData) => async (dispatch) => {
     }
 }
 
-export const updateFaculty = (formData) => async (dispatch) => {
+export const updateFaculty = async (formData, dispatch) => {
     try {
         const { data } = await api.updateFaculty(formData)
         dispatch(setFacultyAction(data.faculty))
@@ -46,7 +46,7 @@ export const updateFaculty = (formData) => async (dispatch) => {
     }
 }
 
-export const createTest = (formData) => async (dispatch) => {
+export const createTest = async (formData, dispatch) => {
     try {
         const { data } = await api.createTest(formData)
         dispatch(createTestAction(data))
@@ -55,7 +55,7 @@ export const createTest = (formData) => async (dispatch) => {
     }
 }
 
-export const getTest = (formData) => async (dispatch) => {
+export const getTest = async (formData, dispatch) => {
     try {
         const { data } = await api.getTests(formData)
         dispatch(setTestsAction(data.tests))
@@ -64,7 +64,7 @@ export const getTest = (formData) => async (dispatch) => {
     }
 }
 
-export const getStudents = (formData) => async (dispatch) => {
+export const getStudents = async (formData, dispatch) => {
     try {
         const { data } = await api.getStudentsByFaculty(formData)
         dispatch(setStudentsAction(data.students))
@@ -73,7 +73,7 @@ export const getStudents = (formData) => async (dispatch) => {
     }
 }
 
-export const uploadMark = (formData) => async () => {
+export const uploadMark = async (formData) => {
     try {
         await api.uploadStudentMarks(formData)
     } catch (error) {
@@ -81,7 +81,7 @@ export const uploadMark = (formData) => async () => {
     }
 }
 
-export const markAttendance = (formData) => async () => {
+export const markAttendance = async (formData) => {
     try {
         await api.markAttendance(formData)
     } catch (error) {

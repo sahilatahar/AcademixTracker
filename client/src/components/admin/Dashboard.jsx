@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
     BookOpenText,
     House,
@@ -16,13 +16,16 @@ import ReplyIcon from "@mui/icons-material/Reply"
 const Dashboard = () => {
     const [open, setOpen] = useState(false)
     const [openNotice, setOpenNotice] = useState({})
-    const notices = useSelector((state) => state.admin.notices.result)
+    const notices = useSelector((state) => state.admin.notices)
     const [value, onChange] = useState(new Date())
     const students = useSelector((state) => state.admin.allStudents)
     const faculties = useSelector((state) => state.admin.allFaculties)
     const admins = useSelector((state) => state.admin.allAdmins)
     const departments = useSelector((state) => state.admin.departments)
 
+    useEffect(() => {
+        console.log(notices)
+    }, [notices])
     return (
         <div className="h-screen flex-grow overflow-y-auto px-4">
             <div className="flex items-center space-x-2 pb-8 pt-4 text-gray-600">
