@@ -5,12 +5,13 @@ import Login from "../components/login/Login"
 //* Admin Components
 import AdminLogin from "../components/login/adminLogin/AdminLogin"
 import AdminHome from "../components/admin/AdminHome"
-// import AddAdmin from "../components/admin/addAdmin/AddAdmin"
+import AdminDashboard from "../components/admin/Dashboard"
+import AddAdmin from "../components/admin/addAdmin/AddAdmin"
 // import AdminProfile from "../components/admin/profile/Profile"
 // import AdminUpdate from "../components/admin/profile/update/Update"
 // import AdminFirstTimePassword from "../components/admin/profile/update/firstTimePassword/FirstTimePassword"
 // import AdminPassword from "../components/admin/profile/update/password/Password"
-// import DeleteAdmin from "../components/admin/deleteAdmin/DeleteAdmin"
+import DeleteAdmin from "../components/admin/deleteAdmin/DeleteAdmin"
 // import DeleteFaculty from "../components/admin/deleteFaculty/DeleteFaculty"
 // import DeleteStudent from "../components/admin/deleteStudent/DeleteStudent"
 // import DeleteSubject from "../components/admin/deleteSubject/DeleteSubject"
@@ -53,44 +54,55 @@ import StudentRegister from "../components/register/studentRegister/StudentRegis
 // import Attendance from "../components/student/attendance/Attendance"
 
 import ProtectedRoute from "./ProtectedRoute"
+import AuthRedirect from "./AuthRedirect"
 
 const routes = createBrowserRouter([
     {
         path: "/",
-        element: <Login />,
+        element: <AuthRedirect Component={Login} />,
     },
     {
         path: "/admin/login",
-        element: <AdminLogin />,
+        element: <AuthRedirect Component={AdminLogin} />,
     },
     {
         path: "/admin/register",
-        element: <AdminRegister />,
+        element: <AuthRedirect Component={AdminRegister} />,
     },
     {
         path: "/faculty/login",
-        element: <FacultyLogin />,
+        element: <AuthRedirect Component={FacultyLogin} />,
     },
     {
         path: "/faculty/register",
-        element: <FacultyRegister />,
+        element: <AuthRedirect Component={FacultyRegister} />,
     },
     {
         path: "/student/login",
-        element: <StudentLogin />,
+        element: <AuthRedirect Component={StudentLogin} />,
     },
     {
         path: "/student/register",
-        element: <StudentRegister />,
+        element: <AuthRedirect Component={StudentRegister} />,
     },
     {
-        path: "/admin/dashboard",
+        path: "/admin",
         element: <ProtectedRoute Component={AdminHome} role="admin" />,
+        children: [
+            {
+                path: "dashboard",
+                element: <AdminDashboard />,
+            },
+            {
+                path: "add-admin",
+                element: <AddAdmin />,
+            },
+            {
+                path: "delete-admin",
+                element: <DeleteAdmin />,
+            },
+        ],
     },
-    // {
-    //     path: "/admin/add-admin",
-    //     element: <ProtectedRoute Component={AddAdmin} />,
-    // },
     // {
     //     path: "/admin/add-department",
     //     element: <ProtectedRoute Component={AddDepartment} />,

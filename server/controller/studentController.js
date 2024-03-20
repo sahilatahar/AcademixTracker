@@ -35,8 +35,8 @@ export const studentLogin = async (req, res) => {
 				role: "student",
 				id: student._id,
 			},
-			"sEcReT",
-			{ expiresIn: "1h" }
+			
+			{ expiresIn: "1d" }
 		)
 
 		return res.status(200).json({ student, token })

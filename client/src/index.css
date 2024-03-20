@@ -11,12 +11,20 @@
         @apply w-full rounded-md border border-gray-500 px-3 py-3 focus:border-primary focus:outline-none;
     }
 
-    .btn-primary {
+    .btn-primary-full {
         @apply mt-2 w-full rounded-md bg-primary px-8 py-3 text-lg font-semibold text-black;
     }
 
-    .btn-register {
-        @apply mt-8 w-full rounded-lg bg-primary px-8 py-3 text-lg font-semibold text-black sm:w-[250px];
+    .btn-primary {
+        @apply mt-6 w-full rounded-lg bg-primary px-8 py-3 text-lg font-semibold text-black sm:w-[250px];
+    }
+
+    .btn-danger-full {
+        @apply mt-6 w-full rounded-lg bg-danger px-8 py-3 text-lg font-semibold text-white sm:w-[250px];
+    }
+
+    .btn-danger {
+        @apply mt-6 w-full rounded-lg bg-danger px-8 py-3 text-lg font-semibold text-white sm:w-[250px];
     }
 
     .react-calendar {
@@ -24,7 +32,35 @@
     }
 
     .shadow-card {
-        border-radius: 20px;
         box-shadow: 5px 5px 30px #d9d9d9;
+    }
+
+    .outlet-page {
+        @apply h-screen flex-grow overflow-y-auto px-4;
+    }
+
+    .outlet-header {
+        @apply flex items-center space-x-2 py-4 text-gray-600;
+    }
+
+    .outlet-form {
+        @apply flex flex-col gap-4 pb-4 md:flex-row md:gap-8;
+    }
+
+    .outlet-form-div {
+        @apply flex w-full flex-col items-center;
+    }
+
+    .outlet-form-fields {
+        @apply grid w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3;
+    }
+
+    .password-eye {
+        @apply absolute right-3 top-1/2 cursor-pointer bg-white;
+    }
+
+    table td,
+    th {
+        @apply py-1;
     }
 }

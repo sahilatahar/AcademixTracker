@@ -28,8 +28,8 @@ export const adminLogin = async (req, res) => {
 				role: "admin",
 				id: admin._id,
 			},
-			"sEcReT",
-			{ expiresIn: "1h" }
+			process.env.JWT_SECRET,
+			{ expiresIn: "1d" }
 		)
 		return res.status(200).json({ admin, token })
 	} catch (error) {
@@ -65,7 +65,6 @@ export const getAdmin = async (req, res) => {
 export const getAdmins = async (req, res) => {
 	try {
 		const { department } = req.body
-
 		const admins = await Admin.find({ department })
 		return res.status(200).json({ admins })
 	} catch (error) {
@@ -100,27 +99,12 @@ export const addAdmin = async (req, res) => {
 			avatar,
 			email,
 			joiningDate,
+			username
 		} = req.body
 		const admin = await Admin.findOne({ email })
 		if (admin) {
 			return res.status(400).json({ message: "Admin already exists" })
 		}
-		const existingDepartment = await Department.findOne({ department })
-		let departmentHelper = existingDepartment.departmentCode
-		const admins = await Admin.find({ department })
-
-		let helper
-		if (admins.length < 10) {
-			helper = "00" + admins.length.toString()
-		} else if (admins.length < 100 && admins.length > 9) {
-			helper = "0" + admins.length.toString()
-		} else {
-			helper = admins.length.toString()
-		}
-		var date = new Date()
-		var components = ["ADM", date.getFullYear(), departmentHelper, helper]
-
-		var username = components.join("")
 		let hashedPassword
 		const newDob = dob.split("-").reverse().join("-")
 

@@ -1,11 +1,10 @@
 import { useEffect, useRef } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { jwtDecode } from "jwt-decode"
 import { showToast } from "../../utils/toast"
 import { sidebarItems } from "./SidebarItems"
 import { List, SignOut } from "@phosphor-icons/react"
-import { logoutUser } from "../../redux/actions/userActions"
+import { getUserDecodedData, logoutUser } from "../../redux/actions/userActions"
 
 const isNotActiveStyle =
     "flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize hover:bg-gray-200 py-2 my-1"
@@ -32,10 +31,9 @@ const Sidebar = () => {
             logoutUser(dispatch)
             navigate("/admin/login")
         }
-        const token = localStorage.getItem("token")
-        if (token) {
-            const decodedToken = jwtDecode(token)
-            if (decodedToken.exp * 1000 < new Date().getTime()) logout()
+        const decodedData = getUserDecodedData()
+        if (decodedData !== null) {
+            if (decodedData.exp * 1000 < new Date().getTime()) logout()
         }
     }, [dispatch, navigate])
 

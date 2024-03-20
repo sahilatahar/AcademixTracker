@@ -7,10 +7,10 @@ import {
     getDepartments,
     getNotices,
 } from "../../redux/actions/adminActions"
-import Body from "./Body"
 import Header from "./Header"
 import Sidebar from "./Sidebar"
 import { LoadingPage } from "../common/Loading"
+import { Outlet } from "react-router-dom"
 
 const AdminHome = () => {
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const AdminHome = () => {
             <Sidebar />
             <div className="flex flex-grow flex-col">
                 <Header />
-                <Body />
+                <Outlet />
             </div>
         </div>
     )

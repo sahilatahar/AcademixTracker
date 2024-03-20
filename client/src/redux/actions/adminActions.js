@@ -30,6 +30,7 @@ import {
 } from "../slices/adminSlice"
 import * as api from "../api/admin"
 import { showToast } from "../../utils/toast"
+import { getUserDecodedData } from "./userActions"
 
 export const adminLogin = async (formData, dispatch) => {
     try {
@@ -81,6 +82,7 @@ export const getAllStudents = async (dispatch) => {
 export const getStudents = async (formData, dispatch) => {
     try {
         const { data } = await api.getStudents(formData)
+        console.log(data.students)
         dispatch(setStudentsAction(data.students))
     } catch (error) {
         showToast(error.response.data.message, "error")
@@ -162,7 +164,10 @@ export const deleteFaculty = async (id, dispatch) => {
 export const getAllAdmins = async (dispatch) => {
     try {
         const { data } = await api.getAllAdmins()
-        dispatch(setAllAdminsAction(data.admins))
+        const { id } = getUserDecodedData()
+        // Remove the current login admin from the list of admins
+        const admins = data.admins.filter((admin) => admin._id !== id)
+        dispatch(setAllAdminsAction(admins))
     } catch (error) {
         console.log("Redux Error", error)
     }
@@ -170,8 +175,11 @@ export const getAllAdmins = async (dispatch) => {
 
 export const getAdmins = async (department, dispatch) => {
     try {
-        const { data } = await api.getAdmins(department)
-        dispatch(setAdminsAction(data.admins))
+        const { data } = await api.getAdmins({ department })
+        const { id } = getUserDecodedData()
+        // Remove the current login admin from the list of admins
+        const admins = data.admins.filter((admin) => admin._id !== id)
+        dispatch(setAdminsAction(admins))
     } catch (error) {
         showToast(error.response.data.message, "error")
     }
@@ -181,6 +189,7 @@ export const addAdmin = async (formData, dispatch) => {
     try {
         const { data } = await api.addAdmin(formData)
         dispatch(addAdminAction(data.admin))
+        showToast("Admin added successfully", "success")
         return true
     } catch (error) {
         showToast(error.response.data.message, "error")

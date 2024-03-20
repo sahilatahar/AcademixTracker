@@ -245,7 +245,7 @@ const StudentRegister = () => {
                         />
                     </div>
                 </div>
-                <button type="submit" className="btn-register">
+                <button type="submit" className="btn-primary">
                     Register
                 </button>
             </form>

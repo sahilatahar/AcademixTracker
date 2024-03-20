@@ -13,7 +13,7 @@ import Notice from "../notices/Notice"
 import ShowNotice from "../notices/ShowNotice"
 import ReplyIcon from "@mui/icons-material/Reply"
 
-const Body = () => {
+const Dashboard = () => {
     const [open, setOpen] = useState(false)
     const [openNotice, setOpenNotice] = useState({})
     const notices = useSelector((state) => state.admin.notices.result)
@@ -87,8 +87,12 @@ const Body = () => {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center md:flex-row md:space-x-4">
-                    <Calendar onChange={onChange} value={value} />
-                    <div className="w-full p-4">
+                    <Calendar
+                        onChange={onChange}
+                        value={value}
+                        className="shadow-card"
+                    />
+                    <div className="shadow-card w-full rounded-lg p-4">
                         <div className="flex w-full px-3">
                             {open && (
                                 <ReplyIcon
@@ -129,4 +133,4 @@ const Body = () => {
     )
 }
 
-export default Body
+export default Dashboard

@@ -4,7 +4,7 @@ const Header = () => {
     const user = useSelector((state) => state.user.user)
 
     return (
-        <div className="flex items-center justify-end py-3 pl-16 pr-8 md:justify-between lg:px-8">
+        <div className="flex items-center justify-end py-3 pl-16 pr-8 sm:justify-between lg:px-8">
             <h1 className="hidden text-xl font-semibold text-black sm:block">
                 Welcome
             </h1>

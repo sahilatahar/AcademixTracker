@@ -33,8 +33,8 @@ export const facultyLogin = async (req, res) => {
 				role: "faculty",
 				id: faculty._id,
 			},
-			"sEcReT",
-			{ expiresIn: "1h" }
+			process.env.JWT_SECRET,
+			{ expiresIn: "1d" }
 		)
 
 		return res.status(200).json({ faculty, token })
