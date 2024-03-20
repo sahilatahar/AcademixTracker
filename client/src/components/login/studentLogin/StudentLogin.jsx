@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router"
 import { useDispatch } from "react-redux"
 import { Eye, EyeSlash } from "@phosphor-icons/react"
-import { studentLogin } from "../../../app/actions/studentActions"
+import { studentLogin } from "../../../redux/actions/studentActions"
 import { showToast } from "../../../utils/toast"
 
 const StudentLogin = () => {

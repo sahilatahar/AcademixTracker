@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import BoyIcon from "@mui/icons-material/Boy"
 import { useDispatch, useSelector } from "react-redux"
-import { getStudents, uploadMark } from "../../../app/actions/facultyActions"
+import { getStudents, uploadMark } from "../../../redux/actions/facultyActions"
 import { MenuItem, Select } from "@mui/material"
 import Spinner from "../../../utils/Spinner"
 import * as classes from "../../../utils/styles"
-import { getTest } from "../../../app/actions/facultyActions"
+import { getTest } from "../../../redux/actions/facultyActions"
 const Body = () => {
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem("user"))

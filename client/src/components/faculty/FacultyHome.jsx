@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { getNotices } from "../../app/actions/adminActions"
+import { getNotices } from "../../redux/actions/adminActions"
 import Body from "./Body"
 import Header from "./Header"
 import Sidebar from "./Sidebar"

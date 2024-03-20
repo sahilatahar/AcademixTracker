@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 import {
     getDepartments,
     getAllSubjects,
-} from "../../../app/actions/adminActions"
+} from "../../../redux/actions/adminActions"
 
 const MarkAttendance = () => {
     const dispatch = useDispatch()

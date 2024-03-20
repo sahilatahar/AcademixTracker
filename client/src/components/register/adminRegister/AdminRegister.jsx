@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { addAdmin } from "../../../app/actions/adminActions"
+import { addAdmin } from "../../../redux/actions/adminActions"
 import { Eye, EyeSlash } from "@phosphor-icons/react"
 import ImageInput from "../../common/ImageInput"
 import { showToast } from "../../../utils/toast"

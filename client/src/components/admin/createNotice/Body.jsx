@@ -1,7 +1,7 @@
 import { useState } from "react"
 import EngineeringIcon from "@mui/icons-material/Engineering"
 import { useDispatch } from "react-redux"
-import { createNotice } from "../../../app/actions/adminActions"
+import { createNotice } from "../../../redux/actions/adminActions"
 import Select from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
 import * as classes from "../../../utils/styles"

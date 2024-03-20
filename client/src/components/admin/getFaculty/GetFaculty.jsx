@@ -1,12 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { getDepartments } from "../../../app/actions/adminActions"
+import { getDepartments } from "../../../redux/x/actions/adminActions"
 import Header from "../Header"
 import Sidebar from "../Sidebar"
 import Body from "./Body"
 
 const GetFaculty = () => {
-
     const dispatch = useDispatch()
     useEffect(() => {
         getDepartments(dispatch)

@@ -6,7 +6,7 @@ import {
     getAllAdmins,
     getDepartments,
     getNotices,
-} from "../../app/actions/adminActions"
+} from "../../redux/actions/adminActions"
 import Body from "./Body"
 import Header from "./Header"
 import Sidebar from "./Sidebar"

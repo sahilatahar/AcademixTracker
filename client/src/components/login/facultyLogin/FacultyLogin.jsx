@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Eye, EyeSlash } from "@phosphor-icons/react"
-import { facultyLogin } from "../../../app/actions/facultyActions"
+import { facultyLogin } from "../../../redux/actions/facultyActions"
 import { useNavigate } from "react-router-dom"
 import { showToast } from "../../../utils/toast"
 

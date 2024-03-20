@@ -1,7 +1,7 @@
 import { useState } from "react"
 import MenuBookIcon from "@mui/icons-material/MenuBook"
 import { useDispatch, useSelector } from "react-redux"
-import { getSubjects } from "../../../app/actions/adminActions"
+import { getSubjects } from "../../../redux/x/x/x/x/x/x/x/x/x/x/actions/adminActions"
 import { MenuItem, Select } from "@mui/material"
 import * as classes from "../../../utils/styles"
 

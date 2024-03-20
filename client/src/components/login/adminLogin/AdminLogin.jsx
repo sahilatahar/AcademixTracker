@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import { useDispatch } from "react-redux"
-import { adminLogin } from "../../../app/actions/adminActions"
+import { adminLogin } from "../../../redux/actions/adminActions"
 import { Eye, EyeSlash } from "@phosphor-icons/react"
 import { showToast } from "../../../utils/toast"
 

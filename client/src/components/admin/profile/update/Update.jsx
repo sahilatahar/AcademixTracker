@@ -3,7 +3,7 @@ import Body from "./Body"
 import Header from "../../Header"
 import Sidebar from "../../Sidebar"
 import { useDispatch } from "react-redux"
-import { getDepartments } from "../../../../app/actions/adminActions"
+import { getDepartments } from "../../../../redux/actions/adminActions"
 
 const Update = () => {
     const dispatch = useDispatch()

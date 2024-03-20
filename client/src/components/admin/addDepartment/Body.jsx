@@ -2,7 +2,7 @@ import { useState } from "react"
 import AddIcon from "@mui/icons-material/Add"
 import { useDispatch } from "react-redux"
 import * as classes from "../../../utils/styles"
-import { addDepartment } from "../../../app/actions/adminActions"
+import { addDepartment } from "../../../redux/x/actions/adminActions"
 
 const Body = () => {
     const dispatch = useDispatch()

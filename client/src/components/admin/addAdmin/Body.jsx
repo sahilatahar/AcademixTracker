@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import EngineeringIcon from "@mui/icons-material/Engineering"
 import { useDispatch, useSelector } from "react-redux"
-import { addAdmin } from "../../../app/actions/adminActions"
+import { addAdmin } from "../../../redux/actions/adminActions"
 import Select from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
 import Spinner from "../../../utils/Spinner"

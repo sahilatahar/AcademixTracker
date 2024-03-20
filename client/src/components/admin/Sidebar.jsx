@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode"
 import { showToast } from "../../utils/toast"
 import { sidebarItems } from "./SidebarItems"
 import { List, SignOut } from "@phosphor-icons/react"
-import { logoutUser } from "../../app/actions/userActions"
+import { logoutUser } from "../../redux/actions/userActions"
 
 const isNotActiveStyle =
     "flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize hover:bg-gray-200 py-2 my-1"

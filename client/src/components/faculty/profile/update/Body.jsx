@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import SecurityUpdateIcon from "@mui/icons-material/SecurityUpdate"
 import { useDispatch, useSelector } from "react-redux"
-import { updateFaculty } from "../../../../app/actions/facultyActions"
+import { updateFaculty } from "../../../../redux/actions/facultyActions"
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
 import { useNavigate } from "react-router-dom"
 import { MenuItem, Select } from "@mui/material"

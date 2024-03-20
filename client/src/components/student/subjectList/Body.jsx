@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import MenuBookIcon from "@mui/icons-material/MenuBook"
 import { useDispatch, useSelector } from "react-redux"
-import { getSubjects } from "../../../app/actions/adminActions"
+import { getSubjects } from "../../../redux/actions/adminActions"
 import Spinner from "../../../utils/Spinner"
 import * as classes from "../../../utils/styles"
 

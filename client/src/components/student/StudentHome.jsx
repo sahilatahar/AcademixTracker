@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { getNotices } from "../../app/actions/adminActions"
+import { getNotices } from "../../redux/actions/adminActions"
 import {
     getAttendance,
     getTestResults,
-} from "../../app/actions/studentActions"
+} from "../../redux/actions/studentActions"
 
 import Body from "./Body"
 import Header from "./Header"

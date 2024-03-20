@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { getAttendance } from "../../../app/actions/studentActions"
+import { getAttendance } from "../../../redux/actions/studentActions"
 
 import Header from "../Header"
 import Sidebar from "../Sidebar"

@@ -4,10 +4,10 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
 import Spinner from "../../../../../utils/Spinner"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { updateAdminPassword } from "../../../../../app/actions/adminActions"
+import { updateAdminPassword } from "../../../../../redux/actions/adminActions"
 import * as classes from "../../../../../utils/styles"
-import { updateFacultyPassword } from "../../../../../app/actions/facultyActions"
-import { updateStudentPassword } from "../../../../../app/actions/studentActions"
+import { updateFacultyPassword } from "../../../../../redux/actions/facultyActions"
+import { updateStudentPassword } from "../../../../../redux/actions/studentActions"
 const Body = () => {
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")

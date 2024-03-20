@@ -4,7 +4,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
 import Spinner from "../../../../../utils/Spinner"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { updateAdminPassword } from "../../../../../app/actions/adminActions"
+import { updateAdminPassword } from "../../../../../redux/actions/adminActions"
 import * as classes from "../../../../../utils/styles"
 const Body = () => {
     const [newPassword, setNewPassword] = useState("")

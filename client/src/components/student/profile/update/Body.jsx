@@ -1,7 +1,7 @@
-import  { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import SecurityUpdateIcon from "@mui/icons-material/SecurityUpdate"
 import { useDispatch, useSelector } from "react-redux"
-import { updateStudent } from "../../../../app/actions/studentActions"
+import { updateStudent } from "../../../../redux/actions/studentActions"
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
 import { useNavigate } from "react-router-dom"
 import { MenuItem, Select } from "@mui/material"
@@ -284,7 +284,7 @@ const Body = () => {
                                 </div>
                                 <div className={classes.adminForm3}>
                                     <h1 className={classes.adminLabel}>
-                                       {"Father's Contact Number :"}
+                                        {"Father's Contact Number :"}
                                     </h1>
                                     <input
                                         placeholder={

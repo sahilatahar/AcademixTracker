@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useDispatch, useSelector } from "react-redux"
-import { getSubjects, deleteSubject } from "../../../app/actions/adminActions"
+import {
+    getSubjects,
+    deleteSubject,
+} from "../../../redux/x/actions/adminActions"
 import { MenuItem, Select } from "@mui/material"
 import * as classes from "../../../utils/styles"
 

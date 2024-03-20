@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import AddIcon from "@mui/icons-material/Add"
 import { useDispatch, useSelector } from "react-redux"
-import { createTest } from "../../../app/actions/facultyActions"
+import { createTest } from "../../../redux/actions/facultyActions"
 import Select from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
 import Spinner from "../../../utils/Spinner"

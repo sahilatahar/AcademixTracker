@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { getDepartments } from "../../../app/actions/adminActions"
+import { getDepartments } from "../../../redux/actions/adminActions"
 import Header from "../Header"
 import Sidebar from "../Sidebar"
 import Body from "./Body"
