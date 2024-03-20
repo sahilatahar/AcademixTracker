@@ -11,6 +11,9 @@ import bcrypt from "bcryptjs"
 
 export const adminLogin = async (req, res) => {
 	const { username, password } = req.body
+	if (!username || !password) {
+		return res.status(400).json({ message: "Please fill all the fields" })
+	}
 	try {
 		const admin = await Admin.findOne({ username })
 		if (!admin) {
@@ -22,7 +25,7 @@ export const adminLogin = async (req, res) => {
 		}
 		const token = jwt.sign(
 			{
-				username: admin.username,
+				role: "admin",
 				id: admin._id,
 			},
 			"sEcReT",
@@ -41,6 +44,20 @@ export const getAllAdmins = async (req, res) => {
 		return res.status(200).json({ admins })
 	} catch (error) {
 		console.log("Error in getAllAdmins", error)
+		return res.status(500).json({ message: "Internal server error" })
+	}
+}
+
+export const getAdmin = async (req, res) => {
+	try {
+		const id = req.params.id
+		const admin = await Admin.findOne({ _id: id })
+		if (!admin) {
+			return res.status(400).json({ message: "Admin doesn't exist" })
+		}
+		return res.status(200).json(admin)
+	} catch (error) {
+		console.log("Error in getAdmin", error)
 		return res.status(500).json({ message: "Internal server error" })
 	}
 }

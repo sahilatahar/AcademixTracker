@@ -30,7 +30,7 @@ export const facultyLogin = async (req, res) => {
 
 		const token = jwt.sign(
 			{
-				email: faculty.email,
+				role: "faculty",
 				id: faculty._id,
 			},
 			"sEcReT",
@@ -40,6 +40,20 @@ export const facultyLogin = async (req, res) => {
 		return res.status(200).json({ faculty, token })
 	} catch (error) {
 		console.log("Error in facultyLogin", error)
+		return res.status(500).json({ message: "Internal server error" })
+	}
+}
+
+export const getFaculty = async (req, res) => {
+	try {
+		const id = req.params.id
+		const faculty = await Faculty.findOne({ _id: id })
+		if (!faculty) {
+			return res.status(400).json({ message: "Faculty doesn't exist" })
+		}
+		return res.status(200).json(faculty)
+	} catch (error) {
+		console.log("Error in getFaculty", error)
 		return res.status(500).json({ message: "Internal server error" })
 	}
 }

@@ -52,7 +52,7 @@ const AdminRegister = () => {
             dispatch,
         )
         if (isAdded) {
-            navigate("/login/admin-login")
+            navigate("/admin/login")
         }
     }
 

@@ -28,7 +28,6 @@ import {
     deleteSubject as deleteSubjectAction,
     deleteDepartment as deleteDepartmentAction,
 } from "../slices/adminSlice"
-import { setError } from "../slices/errorSlice"
 import * as api from "../api/admin"
 import { showToast } from "../../utils/toast"
 
@@ -66,7 +65,7 @@ export const updateAdminPassword = async (formData, dispatch) => {
         const { data } = await api.updateAdminPassword(formData)
         dispatch(updateAdminPassword(data.admin))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -84,7 +83,7 @@ export const getStudents = async (formData, dispatch) => {
         const { data } = await api.getStudents(formData)
         dispatch(setStudentsAction(data.students))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -93,7 +92,7 @@ export const addStudent = async (formData, dispatch) => {
         const { data } = await api.addStudent(formData)
         dispatch(addStudentAction(data.student))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -102,7 +101,7 @@ export const updateStudent = async (formData, dispatch) => {
         const { data } = await api.updateStudent(formData)
         dispatch(updateStudentAction(data.student))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -111,7 +110,7 @@ export const deleteStudent = async (id, dispatch) => {
         await api.deleteStudent(id)
         dispatch(deleteStudentAction(id))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -129,7 +128,7 @@ export const getFaculties = async (department, dispatch) => {
         const { data } = await api.getFaculties(department)
         dispatch(setFacultiesAction(data.faculties))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -138,7 +137,7 @@ export const addFaculty = async (formData, dispatch) => {
         const { data } = await api.addFaculty(formData)
         dispatch(addFacultyAction(data.faculty))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -147,7 +146,7 @@ export const updateFaculty = async (formData, dispatch) => {
         const { data } = await api.updateFaculty(formData)
         dispatch(updateFacultyAction(data.faculty))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -156,7 +155,7 @@ export const deleteFaculty = async (id, dispatch) => {
         await api.deleteFaculty(id)
         dispatch(deleteFacultyAction(id))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -174,7 +173,7 @@ export const getAdmins = async (department, dispatch) => {
         const { data } = await api.getAdmins(department)
         dispatch(setAdminsAction(data.admins))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -194,7 +193,7 @@ export const updateAdmin = async (formData, dispatch) => {
         const { data } = await api.updateAdmin(formData)
         dispatch(updateAdminAction(data.admin))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -203,7 +202,7 @@ export const deleteAdmin = async (id, dispatch) => {
         await api.deleteAdmin(id)
         dispatch(deleteAdminAction(id))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -221,7 +220,7 @@ export const addDepartment = async (formData, dispatch) => {
         const { data } = await api.addDepartment(formData)
         dispatch(addDepartmentAction(data.department))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -230,7 +229,7 @@ export const deleteDepartment = async (id, dispatch) => {
         await api.deleteDepartment(id)
         dispatch(deleteDepartmentAction(id))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -248,7 +247,7 @@ export const getSubjects = async (formData, dispatch) => {
         const { data } = await api.getSubjects(formData)
         dispatch(setSubjectsAction(data.subjects))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -257,7 +256,7 @@ export const addSubject = async (formData, dispatch) => {
         const { data } = await api.addSubject(formData)
         dispatch(addSubjectAction(data.subject))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -266,7 +265,7 @@ export const updateSubject = async (formData, dispatch) => {
         const { data } = await api.updateSubject(formData)
         dispatch(updateSubjectAction(data.subject))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -275,16 +274,16 @@ export const deleteSubject = async (id, dispatch) => {
         await api.deleteSubject(id)
         dispatch(deleteSubjectAction(id))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
-export const getNotices = async (formData, dispatch) => {
+export const getNotices = async (dispatch) => {
     try {
-        const { data } = await api.getNotices(formData)
+        const { data } = await api.getNotices()
         dispatch(setNoticesAction(data.notices))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -293,7 +292,7 @@ export const createNotice = async (formData, dispatch) => {
         const { data } = await api.createNotice(formData)
         dispatch(addNoticeAction(data.notice))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }
 
@@ -302,6 +301,6 @@ export const updateNotice = async (formData, dispatch) => {
         const { data } = await api.updateNotice(formData)
         dispatch(updateNoticeAction(data.notice))
     } catch (error) {
-        dispatch(setError(error.response.data))
+        showToast(error.response.data.message, "error")
     }
 }

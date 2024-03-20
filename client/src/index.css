@@ -18,4 +18,13 @@
     .btn-register {
         @apply mt-8 w-full rounded-lg bg-primary px-8 py-3 text-lg font-semibold text-black sm:w-[250px];
     }
+
+    .react-calendar {
+        width: 100% !important;
+    }
+
+    .shadow-card {
+        border-radius: 20px;
+        box-shadow: 5px 5px 30px #d9d9d9;
+    }
 }

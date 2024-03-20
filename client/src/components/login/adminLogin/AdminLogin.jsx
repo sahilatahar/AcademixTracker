@@ -38,7 +38,7 @@ const AdminLogin = () => {
         if (!validateForm()) return
         const isLoggedIn = await adminLogin(formData, dispatch)
         if (isLoggedIn) {
-            navigate("/admin/home")
+            navigate("/admin/dashboard")
         }
     }
 

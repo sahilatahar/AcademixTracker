@@ -33,14 +33,14 @@ const Login = () => {
                         </h1>
                         <Link
                             type="button"
-                            to="/login/admin-login"
+                            to="/admin/login"
                             className="flex w-full items-center justify-center rounded-md bg-primary py-2 text-lg font-semibold text-black"
                         >
                             Login
                         </Link>
                         <Link
                             type="button"
-                            to="/register/admin-register"
+                            to="/admin/register"
                             className="flex w-full items-center justify-center rounded-md bg-primary py-2 text-lg font-semibold text-black"
                         >
                             Register
@@ -53,14 +53,14 @@ const Login = () => {
 
                         <Link
                             type="button"
-                            to="/login/faculty-login"
+                            to="/faculty/login"
                             className="flex w-full items-center justify-center rounded-md bg-primary py-2 text-lg font-semibold text-black"
                         >
                             Login
                         </Link>
                         {/* <Link
 							type="button"
-							to="/register/faculty-register"
+							to="/faculty/register"
 							className="flex items-center justify-center bg-primary text-black text-lg rounded-md py-2 w-full font-semibold"
 						>
 							Register
@@ -72,14 +72,14 @@ const Login = () => {
                         </h1>
                         <Link
                             type="button"
-                            to="/login/student-login"
+                            to="/student/login"
                             className="flex w-full items-center justify-center rounded-md bg-primary py-2 text-lg font-semibold text-black"
                         >
                             Login
                         </Link>
                         {/* <Link
 							type="button"
-							to="/register/student-register"
+							to="/student/register"
 							className="flex items-center justify-center bg-primary text-black text-lg rounded-md py-2 w-full font-semibold"
 						>
 							Register

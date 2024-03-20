@@ -11,7 +11,7 @@ import { showToast } from "../../utils/toast"
 export const facultyLogin = (formData) => async (dispatch) => {
     try {
         const { data } = await api.facultySignIn(formData)
-        localStorage.setItem("token", data.token) // JWT token
+        localStorage.setItem("token", data.token)
         dispatch(setFacultyAction(data.faculty))
         showToast("Login successful", "success")
         return true

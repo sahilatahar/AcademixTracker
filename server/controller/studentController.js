@@ -32,7 +32,7 @@ export const studentLogin = async (req, res) => {
 
 		const token = jwt.sign(
 			{
-				email: student.email,
+				role: "student",
 				id: student._id,
 			},
 			"sEcReT",
@@ -64,6 +64,20 @@ export const updateStudentPassword = async (req, res) => {
 		return res.status(200).json({ student })
 	} catch (error) {
 		console.log("Error in updateStudentPassword", error)
+		return res.status(500).json({ message: "Internal server error" })
+	}
+}
+
+export const getStudent = async (req, res) => {
+	try {
+		const id = req.params.id
+		const student = await Student.findOne({ _id: id })
+		if (!student) {
+			return res.status(400).json({ message: "Student doesn't exist" })
+		}
+		return res.status(200).json(student)
+	} catch (error) {
+		console.log("Error in getStudent", error)
 		return res.status(500).json({ message: "Internal server error" })
 	}
 }

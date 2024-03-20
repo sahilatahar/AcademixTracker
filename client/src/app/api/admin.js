@@ -68,4 +68,4 @@ export const updateStudent = (student) =>
 
 export const getStudents = (data) => API.post("/api/admin/get-students", data)
 
-export const getNotices = (data) => API.post("/api/admin/get-notices", data)
+export const getNotices = () => API.get("/api/admin/get-notices")

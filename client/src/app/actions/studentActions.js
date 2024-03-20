@@ -11,6 +11,7 @@ import { showToast } from "../../utils/toast"
 export const studentLogin = (formData) => async (dispatch) => {
     try {
         const { data } = await api.studentLogin(formData)
+        localStorage.setItem("token", data.token)
         dispatch(studentLoginAction(data.student))
         showToast("Login successful", "success")
         return true

@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import {
     getAllStudents,
@@ -10,24 +10,34 @@ import {
 import Body from "./Body"
 import Header from "./Header"
 import Sidebar from "./Sidebar"
+import { LoadingPage } from "../common/Loading"
 
 const AdminHome = () => {
     const dispatch = useDispatch()
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
-        getAllStudents(dispatch)
-        getAllFaculties(dispatch)
-        getAllAdmins(dispatch)
-        getDepartments(dispatch)
-        getNotices(dispatch)
+        const fetchData = async () => {
+            await getAllStudents(dispatch)
+            await getAllFaculties(dispatch)
+            await getAllAdmins(dispatch)
+            await getDepartments(dispatch)
+            await getNotices(dispatch)
+            setLoading(false)
+        }
+        fetchData()
     }, [dispatch])
+
+    if (loading) {
+        return <LoadingPage />
+    }
+
     return (
-        <div className="flex h-screen items-center justify-center bg-[#d6d9e0]">
-            <div className="flex h-5/6  w-[95%] flex-col space-y-6 overflow-y-hidden rounded-2xl bg-[#f4f6fa] shadow-2xl">
+        <div className="flex h-screen max-h-screen rounded-2xl bg-light">
+            <Sidebar />
+            <div className="flex flex-grow flex-col">
                 <Header />
-                <div className="flex flex-[0.95]">
-                    <Sidebar />
-                    <Body />
-                </div>
+                <Body />
             </div>
         </div>
     )
