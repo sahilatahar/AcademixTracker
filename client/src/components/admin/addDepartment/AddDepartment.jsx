@@ -22,31 +22,24 @@ const AddDepartment = () => {
     return (
         <div className="outlet-page">
             <div className="outlet-header">
-                <Plus size={24} />
+                <Plus size={32} weight="fill" />
                 <h1>Add Department</h1>
             </div>
-            <div className="outlet-div">
-                <form
-                    className="outlet-form items-end gap-4"
-                    onSubmit={handleSubmit}
-                >
-                    <div className="w-full">
-                        <label htmlFor="department">Department</label>
-                        <input
-                            type="text"
-                            id="department"
-                            name="department"
-                            value={department}
-                            className="input-field"
-                            onChange={handleChanges}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn-primary">
-                        Add Department
-                    </button>
-                </form>
-            </div>
+            <form className="search-form-layout" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    id="department"
+                    name="department"
+                    placeholder="Department Name"
+                    value={department}
+                    className="input-field"
+                    onChange={handleChanges}
+                    required
+                />
+                <button type="submit" className="btn-primary">
+                    Add Department
+                </button>
+            </form>
         </div>
     )
 }

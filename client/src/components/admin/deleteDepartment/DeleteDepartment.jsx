@@ -39,30 +39,25 @@ const DeleteDepartment = () => {
     return (
         <div className="outlet-page">
             <div className="outlet-header">
-                <Trash size={24} />
+                <Trash size={24} weight="fill" />
                 <h1>Delete Department</h1>
             </div>
-            <div className="outlet-div">
-                <form
-                    className="outlet-form gap-4 sm:flex-row"
-                    onSubmit={handleSubmit}
-                >
-                    <Select
-                        placeholder="Select Department"
-                        className="w-full"
-                        onChange={handleDepartmentChange}
-                        options={departments.map((department) => ({
-                            value: department._id,
-                            label: department.name,
-                        }))}
-                        classNamePrefix="react-select"
-                        required
-                    />
-                    <button type="submit" className="btn-danger">
-                        Delete Department
-                    </button>
-                </form>
-            </div>
+            <form className="search-form-layout" onSubmit={handleSubmit}>
+                <Select
+                    placeholder="Select Department"
+                    className="w-full"
+                    onChange={handleDepartmentChange}
+                    options={departments.map((department) => ({
+                        value: department._id,
+                        label: department.name,
+                    }))}
+                    classNamePrefix="react-select"
+                    required
+                />
+                <button type="submit" className="btn-danger">
+                    Delete Department
+                </button>
+            </form>
         </div>
     )
 }

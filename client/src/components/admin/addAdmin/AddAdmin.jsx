@@ -72,11 +72,18 @@ const AddAdmin = () => {
                 department: "",
                 contactNumber: "",
                 avatar: "",
-                joiningDate: Date().split(" ")[3],
+                joiningDate: "",
                 password: "",
                 username: "",
             })
         }
+    }
+
+    const handleReset = () => {
+        setFormData({
+            ...formData,
+            avatar: "",
+        })
     }
 
     useEffect(() => {
@@ -89,7 +96,11 @@ const AddAdmin = () => {
                 <UserGear size={32} weight="fill" />
                 <h1>Add Admin</h1>
             </div>
-            <form className="outlet-form" onSubmit={handleSubmit}>
+            <form
+                className="outlet-form"
+                onSubmit={handleSubmit}
+                onReset={handleReset}
+            >
                 <ImageInput
                     onDone={({ base64 }) =>
                         setFormData({
@@ -98,11 +109,12 @@ const AddAdmin = () => {
                         })
                     }
                     type="admin"
+                    avatar={formData.avatar}
                 />
-                <div className="outlet-form-div gap-6">
+                <div className="outlet-form-div">
                     <div className="outlet-form-fields">
                         <div className="w-full">
-                            <label className="input-label">Full Name</label>
+                            <label className="input-label">Name</label>
                             <input
                                 type="text"
                                 placeholder="John Doe"
@@ -189,7 +201,7 @@ const AddAdmin = () => {
                             />
                         </div>
                         <div className="w-full">
-                            <p className="">Joining Year</p>
+                            <p className="">Joining Date</p>
                             <input
                                 type="date"
                                 className="input-field"
@@ -212,12 +224,12 @@ const AddAdmin = () => {
                         </div>
                     </div>
                     <div className="form-button-group">
-                        <button type="submit" className="btn-reset-full">
-                            Reset
+                        <button type="submit" className="btn-reset">
+                            Clear
                         </button>
                         <button
                             type="submit"
-                            className="btn-primary-full"
+                            className="btn-primary"
                             disabled={loading}
                         >
                             Submit

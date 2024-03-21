@@ -44,16 +44,17 @@ const AdminRegister = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!validateForm()) return
-        const isAdded = await addAdmin(
-            {
-                ...formData,
-                joiningDate: new Date(formData.joiningDate).getFullYear(),
-            },
-            dispatch,
-        )
+        const isAdded = await addAdmin(formData, dispatch)
         if (isAdded) {
             navigate("/admin/login")
         }
+    }
+
+    const handleReset = () => {
+        setFormData({
+            ...formData,
+            avatar: "",
+        })
     }
 
     const togglePassword = () => {
@@ -65,6 +66,7 @@ const AdminRegister = () => {
             <form
                 onSubmit={handleSubmit}
                 className="flex w-full flex-col items-center gap-2"
+                onReset={handleReset}
             >
                 <h1 className="heading-1">Admin Registration</h1>
                 <ImageInput
@@ -72,10 +74,11 @@ const AdminRegister = () => {
                         setFormData({ ...formData, avatar: base64 })
                     }}
                     type="admin"
+                    avatar={formData.avatar}
                 />
                 <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                     <div className="w-full">
-                        <label className="input-label">Full Name</label>
+                        <label className="input-label">Name</label>
                         <input
                             type="text"
                             placeholder="John Doe"
@@ -156,7 +159,7 @@ const AdminRegister = () => {
                         />
                     </div>
                     <div className="w-full">
-                        <p className="">Joining Year</p>
+                        <p className="">Joining Date</p>
                         <input
                             type="date"
                             className="input-field"

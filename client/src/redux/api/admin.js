@@ -52,8 +52,8 @@ export const addFaculty = (faculty) =>
 export const updateFaculty = (faculty) =>
     API.put("/api/admin/update-faculty", faculty)
 
-export const getFaculties = (department) =>
-    API.post("/api/admin/get-faculties", department)
+export const getFaculties = (formData) =>
+    API.post("/api/admin/get-faculties", formData)
 
 export const addSubject = (subject) =>
     API.post("/api/admin/add-subject", subject)

@@ -28,7 +28,7 @@ const CreateNotice = () => {
         })
     }
 
-    const validateForm = () => { 
+    const validateForm = () => {
         if (!formData.noticeFor) {
             alert("Please select the notice for")
             return false
@@ -54,80 +54,78 @@ const CreateNotice = () => {
     return (
         <div className="outlet-page">
             <div className="outlet-header">
-                <UserGear size={32} />
+                <UserGear size={32} weight="fill" />
                 <h1>Create Notice</h1>
             </div>
-            <div className="outlet-div">
-                <form
-                    className="outlet-form flex-col gap-4"
-                    onSubmit={handleSubmit}
-                >
-                    <div className="outlet-form-fields">
-                        <div className="w-full">
-                            <label className="input-label">Topic</label>
-                            <input
-                                type="text"
-                                name="topic"
-                                onChange={handleChanges}
-                                className="input-field"
-                                required
-                            />
-                        </div>
-                        <div className="w-full">
-                            <label className="input-label">Date</label>
-                            <input
-                                type="date"
-                                name="date"
-                                onChange={handleChanges}
-                                className="input-field"
-                                required
-                            />
-                        </div>
-                        <div className="w-full">
-                            <label className="input-label">To</label>
-                            <Select
-                                name="noticeFor"
-                                classNamePrefix="react-select"
-                                onChange={handleNoticeForChange}
-                                options={[
-                                    { value: "all", label: "All" },
-                                    { value: "students", label: "Students" },
-                                    { value: "faculty", label: "Faculty" },
-                                ]}
-                                isSearchable={false}
-                                required
-                            />
-                        </div>
-                        <div className="w-full">
-                            <label className="input-label">From</label>
-                            <input
-                                type="text"
-                                name="from"
-                                onChange={handleChanges}
-                                className="input-field"
-                                required
-                            />
-                        </div>
-                    </div>
+            <form
+                className="outlet-form flex-col gap-4"
+                onSubmit={handleSubmit}
+            >
+                <div className="outlet-form-fields">
                     <div className="w-full">
-                        <label className="input-label">Content</label>
-                        <textarea
-                            name="content"
-                            rows="5"
+                        <label className="input-label">Topic</label>
+                        <input
+                            type="text"
+                            name="topic"
+                            onChange={handleChanges}
                             className="input-field"
                             required
-                        ></textarea>
+                        />
                     </div>
-                    <div className="form-button-group">
-                        <button type="reset" className="btn-reset-full">
-                            Reset
-                        </button>
-                        <button type="submit" className="btn-primary-full">
-                            Submit
-                        </button>
+                    <div className="w-full">
+                        <label className="input-label">Date</label>
+                        <input
+                            type="date"
+                            name="date"
+                            onChange={handleChanges}
+                            className="input-field"
+                            required
+                        />
                     </div>
-                </form>
-            </div>
+                    <div className="w-full">
+                        <label className="input-label">To</label>
+                        <Select
+                            name="noticeFor"
+                            classNamePrefix="react-select"
+                            onChange={handleNoticeForChange}
+                            options={[
+                                { value: "all", label: "All" },
+                                { value: "students", label: "Students" },
+                                { value: "faculty", label: "Faculty" },
+                            ]}
+                            isSearchable={false}
+                            required
+                        />
+                    </div>
+                    <div className="w-full">
+                        <label className="input-label">From</label>
+                        <input
+                            type="text"
+                            name="from"
+                            onChange={handleChanges}
+                            className="input-field"
+                            required
+                        />
+                    </div>
+                </div>
+                <div className="w-full">
+                    <label className="input-label">Content</label>
+                    <textarea
+                        name="content"
+                        rows="5"
+                        className="input-field"
+                        required
+                    ></textarea>
+                </div>
+                <div className="form-button-group">
+                    <button type="reset" className="btn-reset">
+                        Clear
+                    </button>
+                    <button type="submit" className="btn-primary">
+                        Submit
+                    </button>
+                </div>
+            </form>
         </div>
     )
 }

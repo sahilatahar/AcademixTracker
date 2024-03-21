@@ -328,15 +328,12 @@ export const addFaculty = async (req, res) => {
 			joiningDate,
 			gender,
 			designation,
+			username,
 		} = req.body
-		const existingFaculty = await Faculty.findOne({ email })
+		const existingFaculty = await Faculty.findOne({ username })
 		if (existingFaculty) {
 			return res.status(400).json({ message: "Faculty already exists" })
 		}
-		const existingDepartment = await Department.findOne({
-			name: department,
-		})
-		let departmentHelper = existingDepartment.departmentCode
 
 		const faculties = await Faculty.find({ department })
 		let helper
@@ -347,10 +344,6 @@ export const addFaculty = async (req, res) => {
 		} else {
 			helper = faculties.length.toString()
 		}
-		var date = new Date()
-		var components = ["FAC", date.getFullYear(), departmentHelper, helper]
-
-		var username = components.join("")
 		let hashedPassword
 		const newDob = dob.split("-").reverse().join("-")
 

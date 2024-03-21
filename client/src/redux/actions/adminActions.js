@@ -125,9 +125,9 @@ export const getAllFaculties = async (dispatch) => {
     }
 }
 
-export const getFaculties = async (department, dispatch) => {
+export const getFaculties = async (formData, dispatch) => {
     try {
-        const { data } = await api.getFaculties(department)
+        const { data } = await api.getFaculties(formData)
         dispatch(setFacultiesAction(data.faculties))
     } catch (error) {
         showToast(error.response.data.message, "error")
@@ -138,8 +138,11 @@ export const addFaculty = async (formData, dispatch) => {
     try {
         const { data } = await api.addFaculty(formData)
         dispatch(addFacultyAction(data.faculty))
+        showToast("Faculty added successfully", "success")
+        return true
     } catch (error) {
         showToast(error.response.data.message, "error")
+        return false
     }
 }
 
@@ -211,6 +214,7 @@ export const deleteAdmin = async (id, dispatch) => {
         await api.deleteAdmin(id)
         dispatch(deleteAdminAction(id))
     } catch (error) {
+        console.log(error)
         showToast(error.response.data.message, "error")
     }
 }

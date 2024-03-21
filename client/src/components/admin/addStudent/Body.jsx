@@ -69,9 +69,8 @@ const Body = () => {
                                     <h1 className={classes.adminLabel}>
                                         Name :
                                     </h1>
-
                                     <input
-                                        placeholder="Full Name"
+                                        placeholder="Name"
                                         required
                                         className={classes.adminInput}
                                         type="text"

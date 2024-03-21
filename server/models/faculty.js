@@ -39,7 +39,7 @@ const facultySchema = Schema({
 		required: true,
 	},
 	joiningDate: {
-		type: Number,
+		type: String,
 		required: true,
 	},
 })

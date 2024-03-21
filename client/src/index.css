@@ -44,7 +44,7 @@
     }
 
     .outlet-page {
-        @apply h-screen flex-grow overflow-y-auto px-4;
+        @apply flex h-screen flex-grow flex-col overflow-y-auto px-4;
     }
 
     .outlet-header {
@@ -52,7 +52,7 @@
     }
 
     .outlet-form {
-        @apply flex flex-col gap-4 pb-4 md:flex-row md:gap-8;
+        @apply flex flex-grow flex-col gap-4 pb-4 md:flex-row md:gap-8;
     }
 
     .outlet-form-div {
@@ -68,12 +68,20 @@
     }
 
     .form-button-group {
-        @apply flex w-full flex-col-reverse items-center gap-4 sm:flex-row;
+        @apply my-4 flex w-full flex-grow flex-col-reverse items-end justify-end gap-4 sm:flex-row;
     }
 
-    table td,
-    th {
-        @apply py-1;
+    table {
+        @apply w-full border-collapse border;
+    }
+
+    table tr td,
+    table tr th {
+        @apply min-w-[120px] max-w-[200px] break-words border px-2 py-2;
+    }
+
+    .search-form-layout {
+        @apply flex flex-col items-end gap-4 pb-4 sm:flex-row;
     }
 }
 

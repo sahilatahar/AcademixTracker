@@ -61,6 +61,13 @@ const StudentRegister = () => {
         }
     }
 
+    const handleReset = () => {
+        setFormData({
+            ...formData,
+            avatar: "",
+        })
+    }
+
     const togglePassword = () => {
         setShowPassword(!showPassword)
     }
@@ -70,6 +77,7 @@ const StudentRegister = () => {
             <form
                 onSubmit={handleSubmit}
                 className="flex w-full flex-col items-center gap-2"
+                onReset={handleReset}
             >
                 <h1 className="heading-1">Student Registration</h1>
                 <ImageInput
@@ -77,10 +85,11 @@ const StudentRegister = () => {
                         setFormData({ ...formData, avatar: base64 })
                     }}
                     type="student"
+                    avatar={formData.avatar}
                 />
                 <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                     <div className="w-full">
-                        <label className="input-label">Full Name</label>
+                        <label className="input-label">Name</label>
                         <input
                             type="text"
                             placeholder="John Doe"

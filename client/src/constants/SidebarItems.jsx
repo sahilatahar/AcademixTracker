@@ -6,6 +6,7 @@ import {
     UserGear,
     Person,
     BookOpenText,
+    User,
 } from "@phosphor-icons/react"
 
 export const sidebarItems = [
@@ -27,8 +28,13 @@ export const sidebarItems = [
     },
     {},
     {
+        title: "Admin List",
+        icon: <User size={24} weight="fill" />,
+        path: "/admin/admin-list",
+    },
+    {
         title: "Add Admin",
-        icon: <Plus size={24} />,
+        icon: <Plus size={24} weight="fill" />,
         path: "/admin/add-admin",
     },
     {
@@ -49,9 +55,9 @@ export const sidebarItems = [
     },
     {},
     {
-        title: "Our Faculty",
+        title: "Faculty List",
         icon: <UserGear size={24} weight="fill" />,
-        path: "/admin/all-faculties",
+        path: "/admin/faculty-list",
     },
     {
         title: "Add Faculty",
@@ -65,7 +71,7 @@ export const sidebarItems = [
     },
     {},
     {
-        title: "Our Students",
+        title: "Student List",
         icon: <Person size={24} weight="fill" />,
         path: "/admin/all-students",
     },
@@ -95,4 +101,5 @@ export const sidebarItems = [
         icon: <Trash size={24} weight="fill" />,
         path: "/admin/delete-subject",
     },
+    {},
 ]

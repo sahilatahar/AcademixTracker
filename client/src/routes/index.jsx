@@ -6,13 +6,14 @@ import Login from "../components/login/Login"
 import AdminLogin from "../components/login/adminLogin/AdminLogin"
 import AdminHome from "../components/admin/AdminHome"
 import AdminDashboard from "../components/admin/Dashboard"
+import AdminList from "../components/admin/adminList/AdminList"
 import AddAdmin from "../components/admin/addAdmin/AddAdmin"
 // import AdminProfile from "../components/admin/profile/Profile"
 // import AdminUpdate from "../components/admin/profile/update/Update"
 // import AdminFirstTimePassword from "../components/admin/profile/update/firstTimePassword/FirstTimePassword"
 // import AdminPassword from "../components/admin/profile/update/password/Password"
 import DeleteAdmin from "../components/admin/deleteAdmin/DeleteAdmin"
-// import DeleteFaculty from "../components/admin/deleteFaculty/DeleteFaculty"
+import DeleteFaculty from "../components/admin/deleteFaculty/DeleteFaculty"
 // import DeleteStudent from "../components/admin/deleteStudent/DeleteStudent"
 // import DeleteSubject from "../components/admin/deleteSubject/DeleteSubject"
 import CreateNotice from "../components/admin/createNotice/CreateNotice"
@@ -20,8 +21,8 @@ import CreateNotice from "../components/admin/createNotice/CreateNotice"
 import AdminRegister from "../components/register/adminRegister/AdminRegister"
 // import GetStudent from "../components/admin/getStudent/GetStudent"
 // import AddStudent from "../components/admin/addStudent/AddStudent"
-// import GetFaculty from "../components/admin/getFaculty/GetFaculty"
-// import AddFaculty from "../components/admin/addFaculty/AddFaculty"
+import FacultyList from "../components/admin/facultyList/FacultyList"
+import AddFaculty from "../components/admin/addFaculty/AddFaculty"
 // import GetSubject from "../components/admin/getSubject/GetSubject"
 // import AddSubject from "../components/admin/addSubject/AddSubject"
 
@@ -31,7 +32,7 @@ import DeleteDepartment from "../components/admin/deleteDepartment/DeleteDepartm
 
 // //* Faculty Components
 import FacultyLogin from "../components/login/facultyLogin/FacultyLogin"
-import FacultyRegister from "../components/register/facultyRegister/FacultyRegister"
+// import FacultyRegister from "../components/register/facultyRegister/FacultyRegister"
 // import FacultyHome from "../components/faculty/FacultyHome"
 // import FacultyProfile from "../components/faculty/profile/Profile"
 // import FacultyFirstTimePassword from "../components/faculty/profile/update/firstTimePassword/FirstTimePassword"
@@ -43,7 +44,7 @@ import FacultyRegister from "../components/register/facultyRegister/FacultyRegis
 
 // //* Student Components
 import StudentLogin from "../components/login/studentLogin/StudentLogin"
-import StudentRegister from "../components/register/studentRegister/StudentRegister"
+// import StudentRegister from "../components/register/studentRegister/StudentRegister"
 // import StudentFirstTimePassword from "../components/student/profile/update/firstTimePassword/FirstTimePassword"
 // import StudentHome from "../components/student/StudentHome"
 // import StudentProfile from "../components/student/profile/Profile"
@@ -55,6 +56,7 @@ import StudentRegister from "../components/register/studentRegister/StudentRegis
 
 import ProtectedRoute from "./ProtectedRoute"
 import AuthRedirect from "./AuthRedirect"
+import NotFound from "../components/common/NotFound"
 
 const routes = createBrowserRouter([
     {
@@ -73,18 +75,18 @@ const routes = createBrowserRouter([
         path: "/faculty/login",
         element: <AuthRedirect Component={FacultyLogin} />,
     },
-    {
-        path: "/faculty/register",
-        element: <AuthRedirect Component={FacultyRegister} />,
-    },
+    // {
+    //     path: "/faculty/register",
+    //     element: <AuthRedirect Component={FacultyRegister} />,
+    // },
     {
         path: "/student/login",
         element: <AuthRedirect Component={StudentLogin} />,
     },
-    {
-        path: "/student/register",
-        element: <AuthRedirect Component={StudentRegister} />,
-    },
+    // {
+    //     path: "/student/register",
+    //     element: <AuthRedirect Component={StudentRegister} />,
+    // },
     {
         path: "/admin",
         element: <ProtectedRoute Component={AdminHome} role="admin" />,
@@ -96,6 +98,10 @@ const routes = createBrowserRouter([
             {
                 path: "create-notice",
                 element: <CreateNotice />,
+            },
+            {
+                path: "admin-list",
+                element: <AdminList />,
             },
             {
                 path: "add-admin",
@@ -113,7 +119,27 @@ const routes = createBrowserRouter([
                 path: "delete-department",
                 element: <DeleteDepartment />,
             },
+            {
+                path: "faculty-list",
+                element: <FacultyList />,
+            },
+            {
+                path: "add-faculty",
+                element: <AddFaculty />,
+            },
+            {
+                path: "delete-faculty",
+                element: <DeleteFaculty />,
+            },
+            {
+                path: "*",
+                element: <NotFound />,
+            },
         ],
+    },
+    {
+        path: "*",
+        element: <NotFound />,
     },
     // {
     //     path: "/admin/add-faculty",

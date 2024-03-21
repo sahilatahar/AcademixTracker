@@ -33,9 +33,9 @@ const AdminHome = () => {
     }
 
     return (
-        <div className="flex h-screen max-h-screen rounded-2xl bg-light">
+        <div className="max-w-screen flex h-screen rounded-2xl bg-light">
             <Sidebar />
-            <div className="flex flex-grow flex-col">
+            <div className="flex w-full flex-grow flex-col">
                 <Header />
                 <Outlet />
             </div>

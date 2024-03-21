@@ -3,15 +3,15 @@ import {
     BookOpenText,
     House,
     Person,
-    UserFocus,
     UserGear,
+    ArrowBendUpLeft,
+    User,
 } from "@phosphor-icons/react"
 import Calendar from "react-calendar"
 import "react-calendar/dist/Calendar.css"
 import { useSelector } from "react-redux"
 import Notice from "../notices/Notice"
 import ShowNotice from "../notices/ShowNotice"
-import ReplyIcon from "@mui/icons-material/Reply"
 
 const Dashboard = () => {
     const [open, setOpen] = useState(false)
@@ -61,9 +61,10 @@ const Dashboard = () => {
                     </div>
                     <div className="flex flex-[0.5] flex-col sm:flex-row">
                         <div className="flex flex-[0.5] items-center space-x-4 p-2">
-                            <UserFocus
+                            <User
                                 className="rounded-full bg-orange-300 py-2"
                                 size={45}
+                                weight="fill"
                             />
                             <div className="flex flex-col">
                                 <h1>Admin</h1>
@@ -76,6 +77,7 @@ const Dashboard = () => {
                             <BookOpenText
                                 className="rounded-full bg-orange-300 py-2"
                                 size={45}
+                                weight="fill"
                             />
                             <div className="flex flex-col">
                                 <h1>Department</h1>
@@ -95,7 +97,9 @@ const Dashboard = () => {
                     <div className="shadow-card w-full rounded-lg p-4">
                         <div className="flex w-full px-3">
                             {open && (
-                                <ReplyIcon
+                                <ArrowBendUpLeft
+                                    size={32}
+                                    weight="fill"
                                     onClick={() => setOpen(false)}
                                     className="cursor-pointer"
                                 />
