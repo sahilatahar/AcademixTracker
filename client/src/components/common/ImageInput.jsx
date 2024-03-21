@@ -4,7 +4,7 @@ import facultyAvatar from "../../assets/faculty.png"
 import studentAvatar from "../../assets/student.png"
 import { useRef } from "react"
 
-function ImageInput({ onDone, type, avatar }) {
+function ImageInput({ onDone, type, avatar, disabled = true }) {
     const inputRef = useRef(null)
     const handleImageError = (e) => {
         switch (type) {
@@ -49,13 +49,14 @@ function ImageInput({ onDone, type, avatar }) {
                 accept="image/*"
                 ref={inputRef}
             />
-            <button
-                className="w-full rounded-lg border border-gray-500 px-4 py-2 font-semibold"
-                type="button"
-                onClick={handleClick}
-            >
-                Change Avatar
-            </button>
+            {disabled && (
+                <button
+                    onClick={handleClick}
+                    className="w-full rounded-lg border border-gray-500 px-4 py-2 font-semibold"
+                >
+                    Change Image
+                </button>
+            )}
         </div>
     )
 }
@@ -64,6 +65,7 @@ ImageInput.propTypes = {
     onDone: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
 }
 
 export default ImageInput

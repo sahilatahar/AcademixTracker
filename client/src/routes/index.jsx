@@ -8,10 +8,8 @@ import AdminHome from "../components/admin/AdminHome"
 import AdminDashboard from "../components/admin/Dashboard"
 import AdminList from "../components/admin/adminList/AdminList"
 import AddAdmin from "../components/admin/addAdmin/AddAdmin"
-// import AdminProfile from "../components/admin/profile/Profile"
-// import AdminUpdate from "../components/admin/profile/update/Update"
-// import AdminFirstTimePassword from "../components/admin/profile/update/firstTimePassword/FirstTimePassword"
-// import AdminPassword from "../components/admin/profile/update/password/Password"
+import AdminProfile from "../components/admin/adminProfile/AdminProfile"
+import AdminPasswordUpdate from "../components/admin/adminProfile/adminPasswordUpdate/AdminPasswordUpdate"
 import DeleteAdmin from "../components/admin/deleteAdmin/DeleteAdmin"
 import DeleteFaculty from "../components/admin/deleteFaculty/DeleteFaculty"
 // import DeleteStudent from "../components/admin/deleteStudent/DeleteStudent"
@@ -94,6 +92,14 @@ const routes = createBrowserRouter([
             {
                 path: "dashboard",
                 element: <AdminDashboard />,
+            },
+            {
+                path: "profile",
+                element: <AdminProfile />,
+            },
+            {
+                path: "update-password",
+                element: <AdminPasswordUpdate />,
             },
             {
                 path: "create-notice",

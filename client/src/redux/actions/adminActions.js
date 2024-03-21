@@ -61,12 +61,14 @@ export const updateAdminProfile = async (formData, dispatch) => {
     }
 }
 
-export const updateAdminPassword = async (formData, dispatch) => {
+export const updateAdminPassword = async (formData) => {
     try {
-        const { data } = await api.updateAdminPassword(formData)
-        dispatch(updateAdminPassword(data.admin))
+        await api.updateAdminPassword(formData)
+        showToast("Password updated successfully", "success")
+        return true
     } catch (error) {
         showToast(error.response.data.message, "error")
+        return false
     }
 }
 
@@ -204,8 +206,11 @@ export const updateAdmin = async (formData, dispatch) => {
     try {
         const { data } = await api.updateAdmin(formData)
         dispatch(updateAdminAction(data.admin))
+        showToast("Admin updated successfully", "success")
+        return true
     } catch (error) {
         showToast(error.response.data.message, "error")
+        return false
     }
 }
 

@@ -83,6 +83,14 @@
     .search-form-layout {
         @apply flex flex-col items-end gap-4 pb-4 sm:flex-row;
     }
+
+    .form-card-parent {
+        @apply flex flex-grow justify-center rounded-lg bg-white;
+    }
+
+    .form-card {
+        @apply flex w-full flex-col gap-4 sm:max-w-[500px];
+    }
 }
 
 .react-select__control {

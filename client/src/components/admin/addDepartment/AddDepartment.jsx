@@ -25,21 +25,23 @@ const AddDepartment = () => {
                 <Plus size={32} weight="fill" />
                 <h1>Add Department</h1>
             </div>
-            <form className="search-form-layout" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    id="department"
-                    name="department"
-                    placeholder="Department Name"
-                    value={department}
-                    className="input-field"
-                    onChange={handleChanges}
-                    required
-                />
-                <button type="submit" className="btn-primary">
-                    Add Department
-                </button>
-            </form>
+            <div className="form-card-parent">
+                <form className="form-card" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        id="department"
+                        name="department"
+                        placeholder="Department Name"
+                        value={department}
+                        className="input-field"
+                        onChange={handleChanges}
+                        required
+                    />
+                    <button type="submit" className="btn-primary-full">
+                        Add Department
+                    </button>
+                </form>
+            </div>
         </div>
     )
 }
