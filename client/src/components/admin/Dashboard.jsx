@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
     BookOpenText,
     House,
@@ -23,9 +23,6 @@ const Dashboard = () => {
     const admins = useSelector((state) => state.admin.allAdmins)
     const departments = useSelector((state) => state.admin.departments)
 
-    useEffect(() => {
-        console.log(notices)
-    }, [notices])
     return (
         <div className="h-screen flex-grow overflow-y-auto px-4">
             <div className="flex items-center space-x-2 pb-8 pt-4 text-gray-600">

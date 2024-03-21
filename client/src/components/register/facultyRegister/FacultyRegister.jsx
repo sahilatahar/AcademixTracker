@@ -5,6 +5,7 @@ import { Eye, EyeSlash } from "@phosphor-icons/react"
 import ImageInput from "../../common/ImageInput"
 import { showToast } from "../../../utils/toast"
 import { useNavigate } from "react-router-dom"
+import Select from "react-select"
 
 const FacultyRegister = () => {
     const dispatch = useDispatch()
@@ -94,10 +95,19 @@ const FacultyRegister = () => {
                     </div>
                     <div className="w-full">
                         <label className="input-label">Gender</label>
-                        <select name="" id="" className="input-field">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
+                        <Select
+                            placeholder="Select"
+                            classNamePrefix="react-select"
+                            options={[
+                                { value: "male", label: "Male" },
+                                {
+                                    value: "female",
+                                    label: "Female",
+                                },
+                            ]}
+                            isSearchable={false}
+                            required
+                        />
                     </div>
                     <div className="w-full">
                         <label className="input-label">Username</label>

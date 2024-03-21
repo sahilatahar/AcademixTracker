@@ -228,8 +228,11 @@ export const addDepartment = async (formData, dispatch) => {
     try {
         const { data } = await api.addDepartment(formData)
         dispatch(addDepartmentAction(data.department))
+        showToast("Department added successfully", "success")
+        return true
     } catch (error) {
         showToast(error.response.data.message, "error")
+        return false
     }
 }
 
@@ -237,8 +240,11 @@ export const deleteDepartment = async (id, dispatch) => {
     try {
         await api.deleteDepartment(id)
         dispatch(deleteDepartmentAction(id))
+        showToast("Department deleted successfully", "success")
+        return true
     } catch (error) {
         showToast(error.response.data.message, "error")
+        return false
     }
 }
 

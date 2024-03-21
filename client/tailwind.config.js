@@ -13,7 +13,7 @@ export default {
                 darkHover: "#3D404A",
                 light: "#ffffff",
                 lightHover: "#e5e5e5",
-                primary: "#39E079",
+                primary: "#607AFB",
                 danger: "#ef4444",
             },
         },

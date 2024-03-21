@@ -5,6 +5,7 @@ import { Eye, EyeSlash } from "@phosphor-icons/react"
 import ImageInput from "../../common/ImageInput"
 import { showToast } from "../../../utils/toast"
 import { useNavigate } from "react-router-dom"
+import Select from "react-select"
 
 const StudentRegister = () => {
     const dispatch = useDispatch()
@@ -148,16 +149,21 @@ const StudentRegister = () => {
                     </div>
                     <div className="w-full">
                         <label className="input-label">Subject</label>
-                        <select
-                            value={formData.subject}
-                            className="input-field"
-                        >
-                            <option value="maths">Maths</option>
-                            <option value="science">Science</option>
-                            <option value="english">English</option>
-                            <option value="history">History</option>
-                            <option value="economics">Economics</option>
-                        </select>
+                        <Select
+                            classNamePrefix="react-select"
+                            options={[
+                                { value: "maths", label: "Maths" },
+                                { value: "science", label: "Science" },
+                                { value: "english", label: "English" },
+                                { value: "history", label: "History" },
+                                { value: "economics", label: "Economics" },
+                            ]}
+                            onChange={(e) => {
+                                setFormData({ ...formData, subject: e.value })
+                            }}
+                            isSearchable={false}
+                            required
+                        />
                     </div>
                     <div className="w-full">
                         <label className="input-label">Batch</label>

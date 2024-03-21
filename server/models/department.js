@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 const { Schema } = mongoose
 
 const departmentSchema = Schema({
-	department: {
+	name: {
 		type: String,
 		required: true,
 	},

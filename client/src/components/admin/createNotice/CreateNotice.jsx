@@ -2,6 +2,7 @@ import { UserGear } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createNotice } from "../../../redux/actions/adminActions"
+import Select from "react-select"
 
 const CreateNotice = () => {
     const dispatch = useDispatch()
@@ -20,8 +21,24 @@ const CreateNotice = () => {
         })
     }
 
+    const handleNoticeForChange = (data) => {
+        setValue({
+            ...formData,
+            noticeFor: data.value,
+        })
+    }
+
+    const validateForm = () => { 
+        if (!formData.noticeFor) {
+            alert("Please select the notice for")
+            return false
+        }
+        return true
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (!validateForm()) return
         const isCreated = await createNotice(formData, dispatch)
         if (isCreated) {
             setValue({
@@ -66,24 +83,20 @@ const CreateNotice = () => {
                                 required
                             />
                         </div>
-
                         <div className="w-full">
                             <label className="input-label">To</label>
-                            <select
+                            <Select
                                 name="noticeFor"
-                                className="input-field"
-                                value={formData.noticeFor}
-                                onChange={handleChanges}
+                                classNamePrefix="react-select"
+                                onChange={handleNoticeForChange}
+                                options={[
+                                    { value: "all", label: "All" },
+                                    { value: "students", label: "Students" },
+                                    { value: "faculty", label: "Faculty" },
+                                ]}
+                                isSearchable={false}
                                 required
-                            >
-                                <option value="" disabled>
-                                    Select
-                                </option>
-                                <option value="All">All</option>
-                                <option value="Admins">Admin</option>
-                                <option value="Faculty">Faculty</option>
-                                <option value="Student">Student</option>
-                            </select>
+                            />
                         </div>
                         <div className="w-full">
                             <label className="input-label">From</label>

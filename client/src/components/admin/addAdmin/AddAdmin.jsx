@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { addAdmin, getDepartments } from "../../../redux/actions/adminActions"
 import ImageInput from "../../common/ImageInput"
 import { showToast } from "../../../utils/toast"
+import Select from "react-select"
 
 const AddAdmin = () => {
     const dispatch = useDispatch()
@@ -33,9 +34,19 @@ const AddAdmin = () => {
         })
     }
 
+    const handleDepartmentChange = (data) => {
+        setFormData({
+            ...formData,
+            department: data.value,
+        })
+    }
+
     const validateForm = () => {
         if (!formData.avatar) {
             showToast("Avatar is required", "error")
+            return false
+        } else if (!formData.department) {
+            showToast("Select Department", "error")
             return false
         } else if (formData.password.toString().length < 6) {
             showToast("Password must be at least 6 characters long", "error")
@@ -114,22 +125,17 @@ const AddAdmin = () => {
                         </div>
                         <div className="w-full">
                             <label className="input-label">Department</label>
-                            <select
+                            <Select
                                 name="department"
-                                className="input-field"
-                                onChange={handleChanges}
-                                defaultValue="DEFAULT"
+                                classNamePrefix="react-select"
+                                placeholder="Select Department"
+                                onChange={handleDepartmentChange}
+                                options={departments.map((department) => ({
+                                    value: department._id,
+                                    label: department.name,
+                                }))}
                                 required
-                            >
-                                <option value="DEFAULT" disabled>
-                                    Select Department
-                                </option>
-                                {departments?.map((d, i) => (
-                                    <option key={i} value={d.department}>
-                                        {d.department}
-                                    </option>
-                                ))}
-                            </select>
+                            />
                         </div>
                         <div className="w-full">
                             <label className="input-label">Username</label>

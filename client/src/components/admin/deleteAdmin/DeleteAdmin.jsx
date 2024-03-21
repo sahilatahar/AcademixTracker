@@ -7,6 +7,7 @@ import {
     getDepartments,
 } from "../../../redux/actions/adminActions"
 import { showToast } from "../../../utils/toast"
+import Select from "react-select"
 
 const DeleteAdmin = () => {
     const dispatch = useDispatch()
@@ -31,17 +32,28 @@ const DeleteAdmin = () => {
         setCheckedValues(tempCheck)
     }
 
-    const handleDepartmentChange = (e) => {
-        setDepartment(e.target.value)
+    const handleDepartmentChange = (data) => {
+        setDepartment(data.value)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         setSearch(true)
         await getAdmins(department, dispatch)
     }
 
+    const validate = () => {
+        if (checkedValues.length === 0) {
+            showToast("Please select at least one admin", "error")
+            return false
+        }
+        return true
+    }
+
     const handleAdminDelete = async () => {
+        if (!validate()) return
+
         const confirm = window.confirm("Are you sure you want to delete?")
         if (!confirm) return
 
@@ -65,24 +77,19 @@ const DeleteAdmin = () => {
             </div>
             <div className="outlet-div">
                 <form
-                    className="flex flex-col items-center gap-2 sm:flex-row"
+                    className="outlet-form gap-4 sm:flex-row"
                     onSubmit={handleSubmit}
                 >
-                    <select
-                        className="input-field"
+                    <Select
+                        className="w-full"
+                        classNamePrefix="react-select"
                         onChange={handleDepartmentChange}
-                        value={department}
+                        options={departments.map((dep) => ({
+                            value: dep.name,
+                            label: dep.name,
+                        }))}
                         required
-                    >
-                        <option disabled value="">
-                            Select Department
-                        </option>
-                        {departments?.map((dep, i) => (
-                            <option key={i} value={dep.department}>
-                                {dep.department}
-                            </option>
-                        ))}
-                    </select>
+                    />
                     <button className="btn-primary mt-0" type="submit">
                         Search
                     </button>

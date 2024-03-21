@@ -60,6 +60,7 @@ const Sidebar = () => {
                             className={({ isActive }) =>
                                 isActive ? isActiveStyle : isNotActiveStyle
                             }
+                            onClick={toggleSidebar}
                         >
                             {item.icon}
                             <span>{item.title}</span>

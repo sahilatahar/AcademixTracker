@@ -26,8 +26,8 @@ import AdminRegister from "../components/register/adminRegister/AdminRegister"
 // import AddSubject from "../components/admin/addSubject/AddSubject"
 
 // //* Department Components
-// import AddDepartment from "../components/admin/addDepartment/AddDepartment"
-// import DeleteDepartment from "../components/admin/deleteDepartment/DeleteDepartment"
+import AddDepartment from "../components/admin/addDepartment/AddDepartment"
+import DeleteDepartment from "../components/admin/deleteDepartment/DeleteDepartment"
 
 // //* Faculty Components
 import FacultyLogin from "../components/login/facultyLogin/FacultyLogin"
@@ -94,6 +94,10 @@ const routes = createBrowserRouter([
                 element: <AdminDashboard />,
             },
             {
+                path: "create-notice",
+                element: <CreateNotice />,
+            },
+            {
                 path: "add-admin",
                 element: <AddAdmin />,
             },
@@ -102,15 +106,15 @@ const routes = createBrowserRouter([
                 element: <DeleteAdmin />,
             },
             {
-                path: "create-notice",
-                element: <CreateNotice />,
+                path: "add-department",
+                element: <AddDepartment />,
+            },
+            {
+                path: "delete-department",
+                element: <DeleteDepartment />,
             },
         ],
     },
-    // {
-    //     path: "/admin/add-department",
-    //     element: <ProtectedRoute Component={AddDepartment} />,
-    // },
     // {
     //     path: "/admin/add-faculty",
     //     element: <ProtectedRoute Component={AddFaculty} />,
@@ -158,10 +162,6 @@ const routes = createBrowserRouter([
     // {
     //     path: "/admin/delete-admin",
     //     element: <ProtectedRoute Component={DeleteAdmin} />,
-    // },
-    // {
-    //     path: "/admin/delete-department",
-    //     element: <ProtectedRoute Component={DeleteDepartment} />,
     // },
     // {
     //     path: "/admin/delete-faculty",

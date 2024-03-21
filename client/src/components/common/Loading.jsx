@@ -1,7 +1,7 @@
 import { Bars } from "react-loader-spinner"
 
 function Loading() {
-    return <Bars color="#39E079" width={50} />
+    return <Bars color="#607AFB" width={50} />
 }
 
 function LoadingPage() {

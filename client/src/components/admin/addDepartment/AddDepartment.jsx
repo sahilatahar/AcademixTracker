@@ -1,20 +1,54 @@
-import React from "react";
-import Header from "../Header";
-import Sidebar from "../Sidebar";
-import Body from "./Body";
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addDepartment } from "../../../redux/actions/adminActions"
+import { Plus } from "@phosphor-icons/react"
 
 const AddDepartment = () => {
-  return (
-    <div className="bg-[#d6d9e0] h-screen flex items-center justify-center">
-      <div className="flex flex-col  bg-[#f4f6fa] h-5/6 w-[95%] rounded-2xl shadow-2xl space-y-6 overflow-y-hidden">
-        <Header />
-        <div className="flex flex-[0.95]">
-          <Sidebar />
-          <Body />
-        </div>
-      </div>
-    </div>
-  );
-};
+    const dispatch = useDispatch()
+    const [department, setDepartment] = useState("")
 
-export default AddDepartment;
+    const handleChanges = (e) => {
+        setDepartment(e.target.value)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const isAdded = await addDepartment({ department }, dispatch)
+        if (isAdded) {
+            setDepartment("")
+        }
+    }
+
+    return (
+        <div className="outlet-page">
+            <div className="outlet-header">
+                <Plus size={24} />
+                <h1>Add Department</h1>
+            </div>
+            <div className="outlet-div">
+                <form
+                    className="outlet-form items-end gap-4"
+                    onSubmit={handleSubmit}
+                >
+                    <div className="w-full">
+                        <label htmlFor="department">Department</label>
+                        <input
+                            type="text"
+                            id="department"
+                            name="department"
+                            value={department}
+                            className="input-field"
+                            onChange={handleChanges}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="btn-primary">
+                        Add Department
+                    </button>
+                </form>
+            </div>
+        </div>
+    )
+}
+
+export default AddDepartment

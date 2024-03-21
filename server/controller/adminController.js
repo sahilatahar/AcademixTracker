@@ -99,7 +99,7 @@ export const addAdmin = async (req, res) => {
 			avatar,
 			email,
 			joiningDate,
-			username
+			username,
 		} = req.body
 		const admin = await Admin.findOne({ email })
 		if (admin) {
@@ -252,7 +252,9 @@ export const getDepartments = async (req, res) => {
 export const addDepartment = async (req, res) => {
 	try {
 		const { department } = req.body
-		const existingDepartment = await Department.findOne({ department })
+		const existingDepartment = await Department.findOne({
+			name: department,
+		})
 		if (existingDepartment) {
 			return res
 				.status(400)
@@ -268,7 +270,7 @@ export const addDepartment = async (req, res) => {
 		}
 
 		const newDepartment = await new Department({
-			department,
+			name: department,
 			departmentCode,
 		})
 
@@ -331,7 +333,9 @@ export const addFaculty = async (req, res) => {
 		if (existingFaculty) {
 			return res.status(400).json({ message: "Faculty already exists" })
 		}
-		const existingDepartment = await Department.findOne({ department })
+		const existingDepartment = await Department.findOne({
+			name: department,
+		})
 		let departmentHelper = existingDepartment.departmentCode
 
 		const faculties = await Faculty.find({ department })
@@ -551,7 +555,9 @@ export const addStudent = async (req, res) => {
 		if (existingStudent) {
 			return res.status(400).json({ message: "Student already exists" })
 		}
-		const existingDepartment = await Department.findOne({ department })
+		const existingDepartment = await Department.findOne({
+			name: department,
+		})
 		let departmentHelper = existingDepartment.departmentCode
 
 		const students = await Student.find({ department })

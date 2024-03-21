@@ -29,22 +29,22 @@ export const updateNotice = (notice) =>
 export const deleteAdmin = (id) => API.delete("/api/admin/delete-admin/" + id)
 
 export const deleteFaculty = (id) =>
-    API.delete("/api/admin/delete-faculty" + id)
+    API.delete("/api/admin/delete-faculty/" + id)
 
 export const deleteStudent = (id) =>
-    API.delete("/api/admin/delete-student" + id)
+    API.delete("/api/admin/delete-student/" + id)
 
 export const deleteSubject = (id) =>
-    API.delete("/api/admin/delete-subject" + id)
+    API.delete("/api/admin/delete-subject/" + id)
 
 export const deleteDepartment = (id) =>
-    API.post("/api/admin/delete-department+" + id)
+    API.delete("/api/admin/delete-department/" + id)
 
 export const getAdmins = (department) =>
     API.post("/api/admin/get-admins", department)
 
-export const addDepartment = (department) =>
-    API.post("/api/admin/add-department", department)
+export const addDepartment = (formData) =>
+    API.post("/api/admin/add-department", formData)
 
 export const addFaculty = (faculty) =>
     API.post("/api/admin/add-faculty", faculty)

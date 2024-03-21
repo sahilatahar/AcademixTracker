@@ -1,23 +1,67 @@
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { getDepartments } from "../../../redux/actions/adminActions"
-import Header from "../Header"
-import Sidebar from "../Sidebar"
-import Body from "./Body"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteDepartment } from "../../../redux/actions/adminActions"
+import Select from "react-select"
+import { Trash } from "@phosphor-icons/react"
+import { showToast } from "../../../utils/toast"
 
 const DeleteDepartment = () => {
     const dispatch = useDispatch()
-    useEffect(() => {
-        getDepartments(dispatch)
-    }, [dispatch])
+    const [departmentId, setDepartmentId] = useState("")
+    const departments = useSelector((state) => state.admin.departments)
+
+    const handleDepartmentChange = (data) => {
+        setDepartmentId(data.value)
+    }
+
+    const validateForm = () => {
+        if (!departmentId) {
+            showToast("Please select a department", "error")
+            return false
+        }
+        return true
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (!validateForm()) return
+
+        const isConfirmed = window.confirm(
+            "Are you sure you want to delete this department?",
+        )
+        if (!isConfirmed) return
+        const isDeleted = await deleteDepartment(departmentId, dispatch)
+        if (isDeleted) {
+            setDepartmentId("")
+        }
+    }
+
     return (
-        <div className="flex h-screen items-center justify-center bg-[#d6d9e0]">
-            <div className="flex h-5/6  w-[95%] flex-col space-y-6 overflow-y-hidden rounded-2xl bg-[#f4f6fa] shadow-2xl">
-                <Header />
-                <div className="flex flex-[0.95]">
-                    <Sidebar />
-                    <Body />
-                </div>
+        <div className="outlet-page">
+            <div className="outlet-header">
+                <Trash size={24} />
+                <h1>Delete Department</h1>
+            </div>
+            <div className="outlet-div">
+                <form
+                    className="outlet-form gap-4 sm:flex-row"
+                    onSubmit={handleSubmit}
+                >
+                    <Select
+                        placeholder="Select Department"
+                        className="w-full"
+                        onChange={handleDepartmentChange}
+                        options={departments.map((department) => ({
+                            value: department._id,
+                            label: department.name,
+                        }))}
+                        classNamePrefix="react-select"
+                        required
+                    />
+                    <button type="submit" className="btn-danger">
+                        Delete Department
+                    </button>
+                </form>
             </div>
         </div>
     )
