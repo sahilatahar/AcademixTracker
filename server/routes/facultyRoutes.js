@@ -1,27 +1,26 @@
 import express from "express"
 import {
-	getFaculty,
-	createTest,
+	deleteFaculty,
 	facultyLogin,
-	getStudents,
-	getTests,
-	markAttendance,
+	facultyRegister,
+	getFaculty,
+	getFacultyById,
 	updateFaculty,
 	updateFacultyPassword,
-	uploadMarks,
-} from "../controller/facultyController.js"
-import verifyFaculty from "../middleware/verifyFaculty.js"
+} from "../controllers/facultyController.js"
+import authRoleMiddleware from "../middlewares/authRoleMiddleware.js"
 
 const router = express.Router()
 
+router.post("/", facultyRegister).get("/", authRoleMiddleware, getFaculty)
+
 router.post("/login", facultyLogin)
-router.put("/update-password", verifyFaculty, updateFacultyPassword)
-router.put("/update-profile", verifyFaculty, updateFaculty)
-router.post("/create-test", verifyFaculty, createTest)
-router.post("/get-tests", verifyFaculty, getTests)
-router.post("/get-students", verifyFaculty, getStudents)
-router.post("/upload-marks", verifyFaculty, uploadMarks)
-router.post("/mark-attendance", verifyFaculty, markAttendance)
-router.get("/:id", verifyFaculty, getFaculty)
+
+router
+	.get("/:id", authRoleMiddleware, getFacultyById)
+	.put("/:id", authRoleMiddleware, updateFaculty)
+	.delete("/:id", authRoleMiddleware, deleteFaculty)
+
+router.put("/update-password/:id", authRoleMiddleware, updateFacultyPassword)
 
 export default router

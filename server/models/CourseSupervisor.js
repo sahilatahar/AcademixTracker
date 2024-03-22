@@ -1,9 +1,19 @@
 import mongoose from "mongoose"
 const { Schema, model } = mongoose
 
-const SubjectSchema = new Schema({
+const CourseSupervisorSchema = new Schema({
 	name: {
 		type: String,
+		required: true,
+	},
+	email: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	course: {
+		type: Schema.Types.ObjectId,
+		ref: "Course",
 		required: true,
 	},
 	department: {
@@ -11,14 +21,8 @@ const SubjectSchema = new Schema({
 		ref: "Department",
 		required: true,
 	},
-	course: {
-		type: Schema.Types.ObjectId,
-		ref: "Course",
-		required: true,
-	},
-	semester: {
-		type: Schema.Types.ObjectId,
-		ref: "Semester",
+	contactNumber: {
+		type: String,
 		required: true,
 	},
 	createdAt: {
@@ -27,6 +31,6 @@ const SubjectSchema = new Schema({
 	},
 })
 
-const Subject = model("Subject", SubjectSchema)
+const CourseSupervisor = model("CourseSupervisor", CourseSupervisorSchema)
 
-export default Subject
+export default CourseSupervisor

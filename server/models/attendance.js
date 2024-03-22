@@ -1,23 +1,23 @@
 import mongoose from "mongoose"
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
-const attendanceSchema = Schema({
+const AttendanceSchema = new Schema({
 	student: {
 		type: Schema.Types.ObjectId,
-		ref: "student",
+		ref: "Student",
+		required: true,
 	},
-	subject: {
-		type: Schema.Types.ObjectId,
-		ref: "subject",
+	date: {
+		type: Date,
+		required: true,
 	},
-	totalLecturesByFaculty: {
-		type: Number,
-		default: 0,
-	},
-	lectureAttended: {
-		type: Number,
-		default: 0,
+	status: {
+		type: String,
+		enum: ["Present", "Absent", "Late"],
+		required: true,
 	},
 })
 
-export default mongoose.model("attendance", attendanceSchema)
+const Attendance = model("Attendance", AttendanceSchema)
+
+export default Attendance

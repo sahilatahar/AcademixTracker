@@ -1,19 +1,36 @@
 import mongoose from "mongoose"
-const { Schema } = mongoose
 
-const marksSchema = Schema({
-	exam: {
-		type: Schema.Types.ObjectId,
-		ref: "test",
-	},
+const { Schema, model } = mongoose
+
+const MarkSchema = new Schema({
 	student: {
 		type: Schema.Types.ObjectId,
-		ref: "student",
+		ref: "Student",
+		required: true,
 	},
-	marks: {
+	subject: {
+		type: Schema.Types.ObjectId,
+		ref: "Subject",
+		required: true,
+	},
+	marksObtained: {
 		type: Number,
-		default: -1,
+		required: true,
+	},
+	maxMarks: {
+		type: Number,
+		required: true,
+	},
+	date: {
+		type: Date,
+		default: Date.now,
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
 	},
 })
 
-export default mongoose.model("marks", marksSchema)
+const Mark = model("Mark", MarkSchema)
+
+export default Mark

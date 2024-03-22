@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 const { Schema, model } = mongoose
 
-const AdminSchema = new Schema({
+const HodSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
@@ -15,16 +15,13 @@ const AdminSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	department: {
-		type: String,
-		required: true,
-	},
-	dob: {
-		type: Date,
-		required: true,
-	},
 	avatar: {
 		type: String,
+	},
+	department: {
+		type: Schema.Types.ObjectId,
+		ref: "Department",
+		required: true,
 	},
 	contactNumber: {
 		type: String,
@@ -36,6 +33,6 @@ const AdminSchema = new Schema({
 	},
 })
 
-const Admin = model("Admin", AdminSchema)
+const Hod = model("Hod", HodSchema)
 
-export default Admin
+export default Hod

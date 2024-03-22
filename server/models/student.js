@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
-const studentSchema = Schema({
+const StudentSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
@@ -18,51 +18,51 @@ const studentSchema = Schema({
 		type: String,
 		required: true,
 	},
-	year: {
-		type: Number,
-		required: true,
-	},
-	subjects: [
-		{
-			type: Schema.Types.ObjectId,
-			ref: "subject",
-		},
-	],
-	username: {
+	currentYear: {
 		type: String,
 		required: true,
-		unique: true,
-	},
-	gender: {
-		type: String,
-	},
-	fatherName: {
-		type: String,
-	},
-	motherName: {
-		type: String,
 	},
 	department: {
-		type: String,
+		type: Schema.Types.ObjectId,
+		ref: "Department",
+		required: true,
+	},
+	course: {
+		type: Schema.Types.ObjectId,
+		ref: "Course",
 		required: true,
 	},
 	section: {
 		type: String,
+		enum: ["A", "B", "C", "D"],
 		required: true,
 	},
 	batch: {
 		type: String,
+		required: true,
 	},
 	contactNumber: {
-		type: Number,
-	},
-	fatherContactNumber: {
-		type: Number,
-	},
-	dob: {
 		type: String,
 		required: true,
 	},
+	fatherName: {
+		type: String,
+		required: true,
+	},
+	motherName: {
+		type: String,
+		required: true,
+	},
+	dob: {
+		type: Date,
+		required: true,
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
+	},
 })
 
-export default mongoose.model("student", studentSchema)
+const Student = model("Student", StudentSchema)
+
+export default Student
