@@ -66,6 +66,6 @@ export const addStudent = (student) =>
 export const updateStudent = (student) =>
     API.put("/api/admin/update-student", student)
 
-export const getStudents = (data) => API.post("/api/admin/get-students", data)
+export const getStudents = (formData) => API.post("/api/admin/get-students", formData)
 
 export const getNotices = () => API.get("/api/admin/get-notices")

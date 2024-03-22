@@ -73,7 +73,7 @@ export const sidebarItems = [
     {
         title: "Student List",
         icon: <Person size={24} weight="fill" />,
-        path: "/admin/all-students",
+        path: "/admin/student-list",
     },
     {
         title: "Add Students",
@@ -89,7 +89,7 @@ export const sidebarItems = [
     {
         title: "Subjects",
         icon: <BookOpenText size={24} weight="fill" />,
-        path: "/admin/all-subjects",
+        path: "/admin/subject-list",
     },
     {
         title: "Add Subject",

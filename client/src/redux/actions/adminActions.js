@@ -86,8 +86,10 @@ export const getStudents = async (formData, dispatch) => {
         const { data } = await api.getStudents(formData)
         console.log(data.students)
         dispatch(setStudentsAction(data.students))
+        return true
     } catch (error) {
         showToast(error.response.data.message, "error")
+        return false
     }
 }
 

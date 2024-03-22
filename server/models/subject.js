@@ -2,12 +2,12 @@ import mongoose from "mongoose"
 const { Schema } = mongoose
 
 const subjectSchema = Schema({
-	subjectName: {
+	name: {
 		type: String,
 		required: true,
 		trim: true,
 	},
-	subjectCode: {
+	code: {
 		type: String,
 		required: true,
 	},

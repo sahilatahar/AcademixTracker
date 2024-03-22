@@ -17,7 +17,7 @@ import DeleteFaculty from "../components/admin/deleteFaculty/DeleteFaculty"
 import CreateNotice from "../components/admin/createNotice/CreateNotice"
 
 import AdminRegister from "../components/register/adminRegister/AdminRegister"
-// import GetStudent from "../components/admin/getStudent/GetStudent"
+import StudentList from "../components/admin/studentList/StudentList"
 // import AddStudent from "../components/admin/addStudent/AddStudent"
 import FacultyList from "../components/admin/facultyList/FacultyList"
 import AddFaculty from "../components/admin/addFaculty/AddFaculty"
@@ -137,6 +137,14 @@ const routes = createBrowserRouter([
                 path: "delete-faculty",
                 element: <DeleteFaculty />,
             },
+            {
+                path: "student-list",
+                element: <StudentList />,
+            },
+            // {
+            //     path: "add-subject",
+            //     element: <AddSubject />,
+            // },
             {
                 path: "*",
                 element: <NotFound />,
