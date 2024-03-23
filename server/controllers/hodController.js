@@ -11,21 +11,12 @@ export const hodLogin = async (req, res) => {
 	}
 }
 
-export const createHod = async (req, res) => {
+export const hodRegister = async (req, res) => {
 	try {
-		const { name, avatar, department, email, contactNumber, password } =
-			req.body
-		const { hod } = await hodService.createHod({
-			name,
-			avatar,
-			department,
-			email,
-			contactNumber,
-			password,
-		})
+		const { hod } = await hodService.hodRegister(req.body)
 		res.status(201).json({ hod })
 	} catch (error) {
-		console.log("Error in createHod: ", error.message)
+		console.log("Error in hodRegister: ", error.message)
 		res.status(500).json({ message: "Something went wrong" })
 	}
 }
@@ -52,15 +43,7 @@ export const getHodById = async (req, res) => {
 
 export const updateHod = async (req, res) => {
 	try {
-		const { id } = req.params
-		const { name, avatar, department, email, contactNumber } = req.body
-		const { hod } = await hodService.updateHod(id, {
-			name,
-			avatar,
-			department,
-			email,
-			contactNumber,
-		})
+		const { hod } = await hodService.updateHod(req.body)
 		res.status(200).json({ hod })
 	} catch (error) {
 		console.log("Error in updateHod: ", error.message)
@@ -70,12 +53,7 @@ export const updateHod = async (req, res) => {
 
 export const updateHodPassword = async (req, res) => {
 	try {
-		const { id } = req.params
-		const { oldPassword, newPassword } = req.body
-		const { message } = await hodService.updateHodPassword(id, {
-			oldPassword,
-			newPassword,
-		})
+		const { message } = await hodService.updateHodPassword(req.body)
 		res.status(200).json({ message })
 	} catch (error) {
 		console.log("Error in updateHodPassword: ", error.message)

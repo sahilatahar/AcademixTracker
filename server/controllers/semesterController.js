@@ -2,14 +2,7 @@ import semesterService from "../services/semesterService.js"
 
 export const createSemester = async (req, res) => {
 	try {
-		const { name, startDate, endDate, subjects, course } = req.body
-		const newSemester = await semesterService.createSemester({
-			name,
-			startDate,
-			endDate,
-			subjects,
-			course,
-		})
+		const newSemester = await semesterService.createSemester(req.body)
 		res.status(201).json({ semester: newSemester })
 	} catch (error) {
 		console.log("Error in createSemester:", error)
@@ -41,14 +34,7 @@ export const getSemesterById = async (req, res) => {
 
 export const updateSemester = async (req, res) => {
 	try {
-		const { id } = req.params
-		const { name, startDate, endDate, subjects } = req.body
-		const updatedSemester = await semesterService.updateSemester(id, {
-			name,
-			startDate,
-			endDate,
-			subjects,
-		})
+		const updatedSemester = await semesterService.updateSemester(req.body)
 		res.status(200).json({ semester: updatedSemester })
 	} catch (error) {
 		console.log("Error in updateSemester:", error)

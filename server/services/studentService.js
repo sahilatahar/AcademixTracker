@@ -24,7 +24,7 @@ const studentLogin = async (email, password) => {
 	}
 }
 
-const addStudent = async ({
+const studentRegister = async ({
 	name,
 	email,
 	password,
@@ -86,22 +86,20 @@ const getStudentById = async (id) => {
 	}
 }
 
-const updateStudent = async (
-	id,
-	{
-		name,
-		email,
-		currentYear,
-		department,
-		course,
-		section,
-		batch,
-		contactNumber,
-		fatherName,
-		motherName,
-		dob,
-	}
-) => {
+const updateStudent = async ({
+	_id: id,
+	name,
+	email,
+	currentYear,
+	department,
+	course,
+	section,
+	batch,
+	contactNumber,
+	fatherName,
+	motherName,
+	dob,
+}) => {
 	try {
 		const student = await Student.findById(id)
 		if (!student) {
@@ -134,7 +132,7 @@ const updateStudent = async (
 	}
 }
 
-const updateStudentPassword = async (id, { oldPassword, newPassword }) => {
+const updateStudentPassword = async ({ _id: id, oldPassword, newPassword }) => {
 	try {
 		const student = await Student.findById(id)
 
@@ -178,7 +176,7 @@ const deleteStudent = async (id) => {
 
 export default {
 	studentLogin,
-	addStudent,
+	studentRegister,
 	getStudents,
 	getStudentById,
 	updateStudent,

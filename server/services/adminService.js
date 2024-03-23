@@ -50,7 +50,7 @@ const getAdminById = async (id) => {
 	}
 }
 
-const createAdmin = async (adminData) => {
+const adminRegister = async (adminData) => {
 	try {
 		const {
 			name,
@@ -83,10 +83,17 @@ const createAdmin = async (adminData) => {
 	}
 }
 
-const updateAdmin = async (id, adminData) => {
+const updateAdmin = async (adminData) => {
 	try {
-		const { name, dob, department, contactNumber, avatar, email } =
-			adminData
+		const {
+			_id: id,
+			name,
+			dob,
+			department,
+			contactNumber,
+			avatar,
+			email,
+		} = adminData
 		const admin = await Admin.findById(id)
 		if (!admin) {
 			throw new Error("Admin not found")
@@ -112,7 +119,7 @@ const updateAdmin = async (id, adminData) => {
 	}
 }
 
-const updateAdminPassword = async (id, oldPassword, newPassword) => {
+const updateAdminPassword = async ({ _id: id, oldPassword, newPassword }) => {
 	try {
 		const admin = await Admin.findById(id)
 		if (!admin) {
@@ -149,7 +156,7 @@ export default {
 	login,
 	getAllAdmins,
 	getAdminById,
-	createAdmin,
+	adminRegister,
 	updateAdmin,
 	updateAdminPassword,
 	deleteAdmin,

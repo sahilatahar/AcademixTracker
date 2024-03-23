@@ -53,7 +53,7 @@ const getCourseSupervisorById = async (id) => {
 	}
 }
 
-const createCourseSupervisor = async ({
+const courseSupervisorRegister = async ({
 	name,
 	avatar,
 	department,
@@ -94,10 +94,14 @@ const createCourseSupervisor = async ({
 	}
 }
 
-const updateCourseSupervisor = async (
-	id,
-	{ name, avatar, department, email, contactNumber }
-) => {
+const updateCourseSupervisor = async ({
+	_id: id,
+	name,
+	avatar,
+	department,
+	email,
+	contactNumber,
+}) => {
 	try {
 		const courseSupervisor = await CourseSupervisor.findById(id)
 		if (!courseSupervisor) {
@@ -126,10 +130,11 @@ const updateCourseSupervisor = async (
 	}
 }
 
-const updateCourseSupervisorPassword = async (
-	id,
-	{ oldPassword, newPassword }
-) => {
+const updateCourseSupervisorPassword = async ({
+	_id: id,
+	oldPassword,
+	newPassword,
+}) => {
 	try {
 		const courseSupervisor = await CourseSupervisor.findById(id)
 		if (!courseSupervisor) {
@@ -173,7 +178,7 @@ export default {
 	courseSupervisorLogin,
 	getCourseSupervisors,
 	getCourseSupervisorById,
-	createCourseSupervisor,
+	courseSupervisorRegister,
 	updateCourseSupervisor,
 	updateCourseSupervisorPassword,
 	deleteCourseSupervisor,

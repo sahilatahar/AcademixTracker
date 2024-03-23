@@ -34,7 +34,7 @@ const hodLogin = async ({ email, password }) => {
 	}
 }
 
-const createHod = async ({
+const hodRegister = async ({
 	name,
 	avatar,
 	department,
@@ -97,10 +97,14 @@ const getHodById = async (id) => {
 	}
 }
 
-const updateHod = async (
-	id,
-	{ name, avatar, department, email, contactNumber }
-) => {
+const updateHod = async ({
+	_id: id,
+	name,
+	avatar,
+	department,
+	email,
+	contactNumber,
+}) => {
 	try {
 		const hodExists = await HOD.findOne({ email })
 		if (hodExists && hodExists._id.toString() !== id) {
@@ -125,7 +129,7 @@ const updateHod = async (
 	}
 }
 
-const updateHodPassword = async (id, { oldPassword, newPassword }) => {
+const updateHodPassword = async ({ _id: id, oldPassword, newPassword }) => {
 	try {
 		const hod = await HOD.findById(id)
 		if (!hod) {
@@ -164,7 +168,7 @@ const deleteHod = async (id) => {
 
 export default {
 	hodLogin,
-	createHod,
+	hodRegister,
 	getHods,
 	getHodById,
 	updateHod,

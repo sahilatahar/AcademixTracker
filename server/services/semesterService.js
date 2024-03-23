@@ -46,7 +46,13 @@ const getSemesterById = async (id) => {
 	}
 }
 
-const updateSemester = async (id, { name, startDate, endDate, subjects }) => {
+const updateSemester = async ({
+	_id: id,
+	name,
+	startDate,
+	endDate,
+	subjects,
+}) => {
 	try {
 		const updatedSemester = await Semester.findByIdAndUpdate(
 			id,

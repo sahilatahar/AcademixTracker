@@ -43,10 +43,8 @@ export const createCourse = async (req, res) => {
 
 // Controller function to update a course
 export const updateCourse = async (req, res) => {
-	const { id } = req.params
-	const updatedCourseData = req.body
 	try {
-		const course = await courseService.updateCourse(id, updatedCourseData)
+		const course = await courseService.updateCourse(req.body)
 		if (!course) {
 			return res.status(404).json({ message: "Course not found" })
 		}

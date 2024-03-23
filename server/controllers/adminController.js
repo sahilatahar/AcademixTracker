@@ -34,9 +34,9 @@ export const getAdminById = async (req, res) => {
 	}
 }
 
-export const createAdmin = async (req, res) => {
+export const adminRegister = async (req, res) => {
 	try {
-		const newAdmin = await adminService.createAdmin(req.body)
+		const newAdmin = await adminService.adminRegister(req.body)
 		return res.status(200).json({ admin: newAdmin })
 	} catch (error) {
 		return res.status(500).json({ message: error.message })
@@ -45,8 +45,7 @@ export const createAdmin = async (req, res) => {
 
 export const updateAdmin = async (req, res) => {
 	try {
-		const id = req.params.id
-		const updatedAdmin = await adminService.updateAdmin(id, req.body)
+		const updatedAdmin = await adminService.updateAdmin(req.body)
 		return res.status(200).json({ admin: updatedAdmin })
 	} catch (error) {
 		return res.status(500).json({ message: error.message })
@@ -55,9 +54,7 @@ export const updateAdmin = async (req, res) => {
 
 export const updateAdminPassword = async (req, res) => {
 	try {
-		const id = req.params.id
-		const { oldPassword, newPassword } = req.body
-		await adminService.updateAdminPassword(id, oldPassword, newPassword)
+		await adminService.updateAdminPassword(req.body)
 		return res.status(200).json({ message: "Password updated" })
 	} catch (error) {
 		return res.status(500).json({ message: error.message })

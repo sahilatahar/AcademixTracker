@@ -108,10 +108,15 @@ const getFacultyById = async (id) => {
 	}
 }
 
-const updateFaculty = async (
-	id,
-	{ name, dob, department, contactNumber, avatar, email }
-) => {
+const updateFaculty = async ({
+	_id: id,
+	name,
+	dob,
+	department,
+	contactNumber,
+	avatar,
+	email,
+}) => {
 	try {
 		const faculty = await Faculty.findById(id)
 
@@ -139,7 +144,7 @@ const updateFaculty = async (
 	}
 }
 
-const updateFacultyPassword = async (id, { oldPassword, newPassword }) => {
+const updateFacultyPassword = async ({ _id: id, oldPassword, newPassword }) => {
 	try {
 		const faculty = await Faculty.findById(id)
 

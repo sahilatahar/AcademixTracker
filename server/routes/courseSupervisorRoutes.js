@@ -1,6 +1,6 @@
 import express from "express"
 import {
-	createCourseSupervisor,
+	courseSupervisorRegister,
 	deleteCourseSupervisor,
 	getCourseSupervisorById,
 	getCourseSupervisors,
@@ -12,18 +12,18 @@ import authRoleMiddleware from "../middlewares/authRoleMiddleware.js"
 const router = express.Router()
 
 router
-	.post("/", createCourseSupervisor)
+	.post("/", courseSupervisorRegister)
 	.get("/", authRoleMiddleware, getCourseSupervisors)
 
 router.post("/login", courseSupervisorLogin)
 
 router
 	.get("/:id", authRoleMiddleware, getCourseSupervisorById)
-	.put("/:id", authRoleMiddleware, updateCourseSupervisor)
+	.put("/", authRoleMiddleware, updateCourseSupervisor)
 	.delete("/:id", authRoleMiddleware, deleteCourseSupervisor)
 
 router.put(
-	"/update-password/:id",
+	"/update-password/",
 	authRoleMiddleware,
 	updateCourseSupervisorPassword
 )

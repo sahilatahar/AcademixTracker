@@ -37,7 +37,14 @@ const createNotice = async ({ from, content, topic, date, noticeFor }) => {
 	}
 }
 
-const updateNotice = async (id, { from, content, topic, date, noticeFor }) => {
+const updateNotice = async ({
+	_id: id,
+	from,
+	content,
+	topic,
+	date,
+	noticeFor,
+}) => {
 	try {
 		const notice = await Notice.findById(id)
 		if (!notice) {

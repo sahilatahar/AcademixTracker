@@ -12,7 +12,7 @@ const router = express.Router()
 router
 	.get("/", authRoleMiddleware, getNotices)
 	.post("/", authRoleMiddleware, createNotice)
-	.put("/:id", authRoleMiddleware, updateNotice)
+	.put("/", authRoleMiddleware, updateNotice)
 	.delete("/:id", authRoleMiddleware, deleteNotice)
 	.get("/date/:date", authRoleMiddleware, getNoticeByDate)
 

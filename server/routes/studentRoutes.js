@@ -1,6 +1,6 @@
 import express from "express"
 import {
-	addStudent,
+	studentRegister,
 	deleteStudent,
 	getStudentById,
 	getStudents,
@@ -15,13 +15,13 @@ router.post("/login", studentLogin)
 
 router
 	.get("/", authRoleMiddleware, getStudents)
-	.post("/", authRoleMiddleware, addStudent)
+	.post("/", authRoleMiddleware, studentRegister)
 
 router
 	.get("/:id", authRoleMiddleware, getStudentById)
-	.put("/:id", authRoleMiddleware, updateStudent)
+	.put("/", authRoleMiddleware, updateStudent)
 	.delete("/:id", authRoleMiddleware, deleteStudent)
 
-router.put("/update-password/:id", authRoleMiddleware, updateStudentPassword)
+router.put("/update-password/", authRoleMiddleware, updateStudentPassword)
 
 export default router

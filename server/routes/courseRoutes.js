@@ -15,7 +15,7 @@ router
 
 router
 	.get("/:id", authRoleMiddleware, getCourseById)
-	.put("/:id", authRoleMiddleware, updateCourse)
+	.put("/", authRoleMiddleware, updateCourse)
 	.delete("/:id", authRoleMiddleware, deleteCourse)
 
 export default router

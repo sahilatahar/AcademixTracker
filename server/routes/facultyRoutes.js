@@ -18,9 +18,9 @@ router.post("/login", facultyLogin)
 
 router
 	.get("/:id", authRoleMiddleware, getFacultyById)
-	.put("/:id", authRoleMiddleware, updateFaculty)
+	.put("/", authRoleMiddleware, updateFaculty)
 	.delete("/:id", authRoleMiddleware, deleteFaculty)
 
-router.put("/update-password/:id", authRoleMiddleware, updateFacultyPassword)
+router.put("/update-password/", authRoleMiddleware, updateFacultyPassword)
 
 export default router

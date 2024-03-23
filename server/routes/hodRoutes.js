@@ -1,6 +1,6 @@
 import express from "express"
 import {
-	createHod,
+	hodRegister,
 	deleteHod,
 	getHodById,
 	getHods,
@@ -11,15 +11,15 @@ import {
 import authRoleMiddleware from "../middlewares/authRoleMiddleware.js"
 const router = express.Router()
 
-router.post("/", createHod).get("/", authRoleMiddleware, getHods)
+router.post("/", hodRegister).get("/", authRoleMiddleware, getHods)
 
 router.post("/login", hodLogin)
 
 router
 	.get("/:id", authRoleMiddleware, getHodById)
-	.put("/:id", authRoleMiddleware, updateHod)
+	.put("/", authRoleMiddleware, updateHod)
 	.delete("/:id", authRoleMiddleware, deleteHod)
 
-router.put("/update-password/:id", authRoleMiddleware, updateHodPassword)
+router.put("/update-password/", authRoleMiddleware, updateHodPassword)
 
 export default router

@@ -2,12 +2,9 @@ import departmentService from "../services/departmentService.js"
 
 export const createDepartment = async (req, res) => {
 	try {
-		const { name, hod, description } = req.body
-		const { department } = await departmentService.createDepartment({
-			name,
-			hod,
-			description,
-		})
+		const { department } = await departmentService.createDepartment(
+			req.body
+		)
 		res.status(201).json({ department })
 	} catch (error) {
 		console.log("Error in createDepartment: ", error.message)
@@ -27,9 +24,8 @@ export const getDepartments = async (req, res) => {
 
 export const getDepartmentById = async (req, res) => {
 	try {
-		const { department } = await departmentService.getDepartmentById(
-			req.params.id
-		)
+		const id = req.params.id
+		const { department } = await departmentService.getDepartmentById(id)
 		res.status(200).json({ department })
 	} catch (error) {
 		console.log("Error in getDepartmentById: ", error.message)
@@ -39,9 +35,7 @@ export const getDepartmentById = async (req, res) => {
 
 export const updateDepartment = async (req, res) => {
 	try {
-		const { id } = req.params
 		const { department } = await departmentService.updateDepartment(
-			id,
 			req.body
 		)
 		res.status(200).json({ department })

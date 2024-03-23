@@ -2,14 +2,7 @@ import marksService from "../services/marksService.js"
 
 export const addMark = async (req, res) => {
 	try {
-		const { student, subject, marksObtained, maxMarks, date } = req.body
-		const result = await marksService.addMark({
-			student,
-			subject,
-			marksObtained,
-			maxMarks,
-			date,
-		})
+		const result = await marksService.addMark(req.body)
 		res.status(201).json(result)
 	} catch (error) {
 		console.log("Error in addMark controller: ", error.message)

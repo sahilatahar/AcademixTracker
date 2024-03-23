@@ -11,12 +11,12 @@ export const studentLogin = async (req, res) => {
 	}
 }
 
-export const addStudent = async (req, res) => {
+export const studentRegister = async (req, res) => {
 	try {
-		const newStudent = await studentService.addStudent(req.body)
+		const newStudent = await studentService.studentRegister(req.body)
 		res.status(201).json({ student: newStudent })
 	} catch (error) {
-		console.log("Error in addStudent", error)
+		console.log("Error in studentRegister", error)
 		res.status(500).json({ message: "Something went wrong" })
 	}
 }
@@ -44,8 +44,7 @@ export const getStudentById = async (req, res) => {
 
 export const updateStudent = async (req, res) => {
 	try {
-		const { id } = req.params
-		const updatedStudent = await studentService.updateStudent(id, req.body)
+		const updatedStudent = await studentService.updateStudent(req.body)
 		res.status(200).json({ student: updatedStudent })
 	} catch (error) {
 		console.log("Error in updateStudent", error)
@@ -55,12 +54,7 @@ export const updateStudent = async (req, res) => {
 
 export const updateStudentPassword = async (req, res) => {
 	try {
-		const { id } = req.params
-		const { oldPassword, newPassword } = req.body
-		await studentService.updateStudentPassword(id, {
-			oldPassword,
-			newPassword,
-		})
+		await studentService.updateStudentPassword(req.body)
 		res.status(200).json({ message: "Password updated successfully" })
 	} catch (error) {
 		console.log("Error in updateStudentPassword", error)

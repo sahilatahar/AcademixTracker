@@ -43,7 +43,7 @@ const getDepartmentById = async (id) => {
 	}
 }
 
-const updateDepartment = async (id, { name, hod, description }) => {
+const updateDepartment = async ({ _id: id, name, hod, description }) => {
 	try {
 		const department = await Department.findById(id)
 		if (!department) {

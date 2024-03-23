@@ -26,13 +26,7 @@ export const getSubjectsByDepartmentAndYear = async (req, res) => {
 
 export const addSubject = async (req, res) => {
 	try {
-		const { name, department, course, semester } = req.body
-		const newSubject = await subjectService.addSubject(
-			name,
-			department,
-			course,
-			semester
-		)
+		const newSubject = await subjectService.addSubject(req.body)
 		res.status(200).json({ subject: newSubject })
 	} catch (error) {
 		console.log("Error in addSubject", error)

@@ -23,14 +23,7 @@ export const getNoticeByDate = async (req, res) => {
 
 export const createNotice = async (req, res) => {
 	try {
-		const { from, content, topic, date, noticeFor } = req.body
-		const newNotice = await noticeService.createNotice({
-			from,
-			content,
-			topic,
-			date,
-			noticeFor,
-		})
+		const newNotice = await noticeService.createNotice(req.body)
 		return res.status(200).json({ notice: newNotice })
 	} catch (error) {
 		console.log("Error in createNotice:", error)
@@ -40,15 +33,7 @@ export const createNotice = async (req, res) => {
 
 export const updateNotice = async (req, res) => {
 	try {
-		const { id } = req.params
-		const { from, content, topic, date, noticeFor } = req.body
-		const updatedNotice = await noticeService.updateNotice(id, {
-			from,
-			content,
-			topic,
-			date,
-			noticeFor,
-		})
+		const updatedNotice = await noticeService.updateNotice(req.body)
 		return res.status(200).json({ notice: updatedNotice })
 	} catch (error) {
 		console.log("Error in updateNotice:", error)

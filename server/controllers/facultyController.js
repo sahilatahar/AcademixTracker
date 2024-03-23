@@ -16,26 +16,7 @@ export const facultyLogin = async (req, res) => {
 
 export const facultyRegister = async (req, res) => {
 	try {
-		const {
-			name,
-			avatar,
-			gender,
-			dob,
-			email,
-			password,
-			department,
-			contactNumber,
-		} = req.body
-		const { faculty } = await facultyService.facultyRegister({
-			name,
-			avatar,
-			gender,
-			dob,
-			email,
-			password,
-			department,
-			contactNumber,
-		})
+		const { faculty } = await facultyService.facultyRegister(req.body)
 		res.status(201).json({ faculty })
 	} catch (error) {
 		console.log("Error in facultyRegister: ", error.message)
@@ -65,16 +46,7 @@ export const getFacultyById = async (req, res) => {
 
 export const updateFaculty = async (req, res) => {
 	try {
-		const { id } = req.params
-		const { name, dob, department, contactNumber, avatar, email } = req.body
-		const { faculty } = await facultyService.updateFaculty(id, {
-			name,
-			dob,
-			department,
-			contactNumber,
-			avatar,
-			email,
-		})
+		const { faculty } = await facultyService.updateFaculty(req.body)
 		res.status(200).json({ faculty })
 	} catch (error) {
 		console.log("Error in updateFaculty: ", error.message)
@@ -84,12 +56,7 @@ export const updateFaculty = async (req, res) => {
 
 export const updateFacultyPassword = async (req, res) => {
 	try {
-		const { id } = req.params
-		const { oldPassword, newPassword } = req.body
-		const { message } = await facultyService.updateFacultyPassword(id, {
-			oldPassword,
-			newPassword,
-		})
+		const { message } = await facultyService.updateFacultyPassword(req.body)
 		res.status(200).json({ message })
 	} catch (error) {
 		console.log("Error in updateFacultyPassword: ", error.message)

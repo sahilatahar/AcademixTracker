@@ -35,8 +35,9 @@ const createCourse = async (courseData) => {
 }
 
 // Function to update a course
-const updateCourse = async (id, updatedCourseData) => {
+const updateCourse = async (updatedCourseData) => {
 	try {
+		const { _id: id } = updatedCourseData
 		const course = await Course.findById(id)
 		if (!course) {
 			throw new Error("Course not found")

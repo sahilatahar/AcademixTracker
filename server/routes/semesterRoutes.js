@@ -13,7 +13,7 @@ router
 	.post("/", authRoleMiddleware, createSemester)
 	.get("/course/:course", authRoleMiddleware, getSemestersByCourse)
 	.get("/:id", authRoleMiddleware, getSemesterById)
-	.put("/:id", authRoleMiddleware, updateSemester)
+	.put("/", authRoleMiddleware, updateSemester)
 	.delete("/:id", authRoleMiddleware, deleteSemester)
 
 export default router

@@ -20,7 +20,7 @@ const getSubjectsByDepartmentAndYear = async (department, year) => {
 	}
 }
 
-const addSubject = async (name, department, course, semester) => {
+const addSubject = async ({name, department, course, semester}) => {
 	try {
 		const subject = await Subject.findOne({
 			name,

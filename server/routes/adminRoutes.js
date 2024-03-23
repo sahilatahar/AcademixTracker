@@ -2,7 +2,7 @@ import express from "express"
 import {
 	adminLogin,
 	updateAdminPassword,
-	createAdmin,
+	adminRegister,
 	deleteAdmin,
 	getAllAdmins,
 	getAdminById,
@@ -15,13 +15,13 @@ router.post("/login", adminLogin)
 
 router
 	.get("/", authRoleMiddleware, getAllAdmins)
-	.post("/", authRoleMiddleware, createAdmin)
+	.post("/", authRoleMiddleware, adminRegister)
 
 router
 	.get("/:id", authRoleMiddleware, getAdminById)
-	.put("/:id", authRoleMiddleware, updateAdmin)
+	.put("/", authRoleMiddleware, updateAdmin)
 	.delete("/:id", authRoleMiddleware, deleteAdmin)
 
-router.put("/update-password/:id", authRoleMiddleware, updateAdminPassword)
+router.put("/update-password/", authRoleMiddleware, updateAdminPassword)
 
 export default router
