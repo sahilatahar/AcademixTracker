@@ -28,7 +28,9 @@ export const deleteAdmin = (id) => API.delete("/admin/" + id)
 
 // * Attendance APIs
 
-export const getAttendance = () => API.get("/attendance")
+export const addAttendances = (formData) => API.post("/attendance", formData)
+
+export const getAttendances = () => API.get("/attendance")
 
 export const getAttendanceById = (id) => API.get("/attendance/" + id)
 
@@ -102,7 +104,7 @@ export const getHods = () => API.get("/hod/")
 
 export const getHodById = (id) => API.get("/hod/" + id)
 
-export const addHod = (formData) => API.post("/hod/", formData)
+export const hodRegister = (formData) => API.post("/hod/", formData)
 
 export const updateHod = (formData) => API.put("/hod/", formData)
 

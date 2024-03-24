@@ -1,19 +1,43 @@
-import {
-    studentLogin as studentLoginAction,
-    logOut as logOutAction,
-    setAttendance as setAttendanceAction,
-    setStudent as setStudentAction,
-    setTestResults as setTestResultsAction,
-} from "../slices/studentSlice"
-import * as api from "../api/student"
 import { showToast } from "../../utils/toast"
+import * as api from "../api"
+import {
+    addStudent as addStudentAction,
+    deleteStudent as deleteStudentAction,
+    setStudents as setStudentsAction,
+    updateStudent as updateStudentAction,
+} from "../slices/studentSlice"
 
-export const studentLogin = async (formData, dispatch) => {
+export const fetchStudents = async (dispatch) => {
     try {
-        const { data } = await api.studentLogin(formData)
-        localStorage.setItem("token", data.token)
-        dispatch(studentLoginAction(data.student))
-        showToast("Login successful", "success")
+        const { data } = await api.getStudents()
+        dispatch(setStudentsAction(data.students))
+    } catch (error) {
+        console.log("Redux Error", error)
+    }
+}
+
+export const studentRegister = async (formData, dispatch) => {
+    try {
+        const { data } = await api.studentRegister(formData)
+        dispatch(addStudentAction(data.student))
+    } catch (error) {
+        showToast(error.response.data.message, "error")
+    }
+}
+
+export const updateStudent = async (formData, dispatch) => {
+    try {
+        const { data } = await api.updateStudent(formData)
+        dispatch(updateStudentAction(data.student))
+    } catch (error) {
+        showToast(error.response.data.message, "error")
+    }
+}
+
+export const updateStudentPassword = async (formData) => {
+    try {
+        await api.updateStudentPassword(formData)
+        showToast("Password updated successfully", "success")
         return true
     } catch (error) {
         showToast(error.response.data.message, "error")
@@ -21,45 +45,11 @@ export const studentLogin = async (formData, dispatch) => {
     }
 }
 
-export const studentLogout = async (dispatch) => {
-    localStorage.clear()
-    dispatch(logOutAction())
-    showToast("Log out successful", "success")
-    return true
-}
-
-export const updateStudentPassword = async (formData, dispatch) => {
+export const deleteStudent = async (id, dispatch) => {
     try {
-        const { data } = await api.updateStudentPassword(formData)
-        dispatch(setStudentAction(data.student))
+        await api.deleteStudent(id)
+        dispatch(deleteStudentAction(id))
     } catch (error) {
-        console.log("Redux Error: ", error)
-    }
-}
-
-export const updateStudent = async (formData, dispatch) => {
-    try {
-        const { data } = await api.updateStudent(formData)
-        dispatch(setStudentAction(data.student))
-    } catch (error) {
-        console.log("Redux Error: ", error)
-    }
-}
-
-export const getTestResults = async (formData, dispatch) => {
-    try {
-        const { data } = await api.getTestResults(formData)
-        dispatch(setTestResultsAction(data.testResults))
-    } catch (error) {
-        console.log("Redux Error: ", error)
-    }
-}
-
-export const getAttendance = async (formData, dispatch) => {
-    try {
-        const { data } = await api.getAttendance(formData)
-        dispatch(setAttendanceAction(data.attendance))
-    } catch (error) {
-        console.log("Redux Error: ", error)
+        showToast(error.response.data.message, "error")
     }
 }

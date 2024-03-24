@@ -1,44 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    faculty: null,
-    students: [],
-    tests: [],
+    faculties: null,
 }
 
 const facultySlice = createSlice({
     name: "faculty",
     initialState,
     reducers: {
-        setFaculty: (state, action) => {
-            state.faculty = action.payload
+        setFaculties: (state, action) => {
+            state.faculties = action.payload
         },
-        logOut: (state) => {
-            state.faculty = null
+        addFaculty: (state, action) => {
+            state.faculties.push(action.payload)
         },
-        setTests: (state, action) => {
-            state.tests = action.payload
+        updateFaculty: (state, action) => {
+            const updatedFaculty = action.payload
+            state.faculties = state.faculties.map((faculty) =>
+                faculty._id === updatedFaculty._id ? updatedFaculty : faculty,
+            )
         },
-        setStudents: (state, action) => {
-            state.students = action.payload
-        },
-        createTest: (state, action) => {
-            state.tests.push(action.payload)
-        },
-        deleteTest: (state, action) => {
-            state.tests = state.tests.filter(
-                (test) => test._id !== action.payload,
+        deleteFaculty: (state, action) => {
+            const id = action.payload
+            state.faculties = state.faculties.filter(
+                (faculty) => faculty._id !== id,
             )
         },
     },
 })
 
-export const {
-    setFaculty,
-    logOut,
-    setTests,
-    setStudents,
-    createTest,
-    deleteTest,
-} = facultySlice.actions
+export const selectFaculties = (state) => state.faculty.faculties
+
+export const selectAdminById = (state, id) =>
+    state.faculty.faculties.find((faculty) => faculty._id === id)
+
+export const { addFaculty, deleteFaculty, setFaculties, updateFaculty } =
+    facultySlice.actions
 export default facultySlice.reducer
