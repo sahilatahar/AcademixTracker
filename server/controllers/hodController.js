@@ -4,7 +4,7 @@ export const hodLogin = async (req, res) => {
 	try {
 		const { email, password } = req.body
 		const { hod, token } = await hodService.hodLogin({ email, password })
-		res.status(200).json({ hod, token })
+		res.status(200).json({ userData: hod, token })
 	} catch (error) {
 		console.log("Error in hodLogin: ", error.message)
 		res.status(500).json({ message: "Something went wrong" })

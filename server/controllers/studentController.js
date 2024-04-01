@@ -3,8 +3,11 @@ import studentService from "../services/studentService.js"
 export const studentLogin = async (req, res) => {
 	try {
 		const { email, password } = req.body
-		const student = await studentService.studentLogin(email, password)
-		res.status(200).json({ student })
+		const { student, token } = await studentService.studentLogin(
+			email,
+			password
+		)
+		res.status(200).json({ userData: student, token })
 	} catch (error) {
 		console.log("Error in studentLogin", error)
 		res.status(500).json({ message: "Something went wrong" })

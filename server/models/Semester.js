@@ -8,11 +8,11 @@ const SemesterSchema = new Schema({
 		unique: true,
 	},
 	startDate: {
-		type: Date,
+		type: String,
 		required: true,
 	},
 	endDate: {
-		type: Date,
+		type: String,
 		required: true,
 	},
 	course: {
@@ -28,8 +28,8 @@ const SemesterSchema = new Schema({
 		},
 	],
 	createdAt: {
-		type: Date,
-		default: Date.now,
+		type: String,
+		default: new Date().toISOString(),
 	},
 })
 

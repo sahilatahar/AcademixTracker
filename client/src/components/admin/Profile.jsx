@@ -1,23 +1,22 @@
 import { UserGear } from "@phosphor-icons/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {
-    getDepartments,
-    updateAdmin,
-} from "../../../redux/actions/adminActions"
-import ImageInput from "../../common/ImageInput"
-import { showToast } from "../../../utils/toast"
-import Select from "react-select"
+import { updateAdmin } from "@/redux/actions/userActions"
+import ImageInput from "@/components/common/ImageInput"
+import { showToast } from "@/utils/toast"
 import { NavLink } from "react-router-dom"
+import { selectAdminData } from "@/redux/slices/userSlice"
+import { formateDate } from "@/utils/formateDate"
 
 const AdminProfile = () => {
     const dispatch = useDispatch()
-    const departments = useSelector((state) => state.admin.departments)
     const [loading, setLoading] = useState(false)
-    const user = useSelector((state) => state.user.user)
+    const user = useSelector(selectAdminData)
     const [isSomethingChanged, setIsSomethingChanged] = useState(false)
     const [formData, setFormData] = useState({
         ...user,
+        dob: formateDate(user.dob),
+        createdAt: formateDate(user.createdAt),
     })
     const [editable, setEditable] = useState(false)
 
@@ -31,28 +30,14 @@ const AdminProfile = () => {
         })
     }
 
-    const handleDepartmentChange = (data) => {
-        if (!isSomethingChanged) {
-            setIsSomethingChanged(true)
-        }
-        setFormData({
-            ...formData,
-            department: data.value,
-        })
+    const handleDobChange = (e) => {
+        const stringDate = e.target.value.toISOSting()
+        console.log(stringDate)
     }
 
     const validateForm = () => {
         if (!isSomethingChanged) {
             showToast("Please update the form", "error")
-            return false
-        } else if (!formData.avatar) {
-            showToast("Avatar is required", "error")
-            return false
-        } else if (!formData.department) {
-            showToast("Select Department", "error")
-            return false
-        } else if (formData.password.toString().length < 6) {
-            showToast("Password must be at least 6 characters long", "error")
             return false
         } else if (formData.contactNumber.toString().length !== 10) {
             showToast("Contact number must be 10 digits", "error")
@@ -68,15 +53,11 @@ const AdminProfile = () => {
         const isUpdated = await updateAdmin(formData, dispatch)
         if (isUpdated) {
             setEditable(false)
-            setLoading(false)
         }
+        setLoading(false)
     }
 
     const toggleEdit = () => setEditable(!editable)
-
-    useEffect(() => {
-        getDepartments(dispatch)
-    }, [dispatch])
 
     return (
         <div className="outlet-page">
@@ -86,14 +67,13 @@ const AdminProfile = () => {
             </div>
             <form className="outlet-form" onSubmit={handleSubmit}>
                 <ImageInput
-                    onDone={({ base64 }) => {
+                    onDone={(base64) => {
                         setFormData({
                             ...formData,
                             avatar: base64,
                         })
                         setIsSomethingChanged(true)
                     }}
-                    type="admin"
                     avatar={formData.avatar}
                     disabled={editable}
                 />
@@ -112,24 +92,10 @@ const AdminProfile = () => {
                                 required
                             />
                         </div>
-                        <div
-                            className="w-full"
-                            style={{ display: editable ? "none" : "block" }}
-                        >
-                            <label className="input-label">Username</label>
-                            <input
-                                type="text"
-                                placeholder="Username"
-                                className="input-field"
-                                name="username"
-                                value={formData.username}
-                                onChange={handleChanges}
-                                disabled={!editable}
-                                required
-                            />
-                        </div>
                         <div className="w-full">
-                            <label className="input-label">Email</label>
+                            <label className="input-label">
+                                Email (not changeable)
+                            </label>
                             <input
                                 type="text"
                                 placeholder="johndoe@gmail.com"
@@ -137,26 +103,19 @@ const AdminProfile = () => {
                                 value={formData.email}
                                 name="email"
                                 onChange={handleChanges}
-                                disabled={!editable}
+                                disabled={true}
                                 required
                             />
                         </div>
                         <div className="w-full">
-                            <label className="input-label">Department</label>
-                            <Select
-                                name="department"
-                                classNamePrefix="react-select"
-                                placeholder="Select Department"
-                                onChange={handleDepartmentChange}
-                                value={{
-                                    value: formData.department,
-                                    label: formData.department,
-                                }}
-                                options={departments.map((department) => ({
-                                    value: department._id,
-                                    label: department.name,
-                                }))}
-                                isDisabled={!editable}
+                            <label className="input-label">Date of Birth</label>
+                            <input
+                                type="date"
+                                className="input-field"
+                                name="dob"
+                                value={formData.dob}
+                                onChange={handleDobChange}
+                                disabled={!editable}
                                 required
                             />
                         </div>
@@ -178,33 +137,22 @@ const AdminProfile = () => {
                             />
                         </div>
                         <div className="w-full">
-                            <p className="">Date of Birth</p>
+                            <label className="input-label">
+                                Joining Date (not changeable)
+                            </label>
                             <input
                                 type="date"
                                 className="input-field"
-                                name="dob"
-                                value={formData.dob}
+                                name="createdAt"
+                                value={formData.createdAt}
                                 onChange={handleChanges}
-                                disabled={!editable}
-                                required
-                            />
-                        </div>
-                        <div className="w-full">
-                            <p className="">Joining Date</p>
-                            <input
-                                type="date"
-                                className="input-field"
-                                name="joiningDate"
-                                value={formData.joiningDate}
-                                onChange={handleChanges}
-                                disabled={!editable}
-                                required
+                                disabled={true}
                             />
                         </div>
                     </div>
                     <div className="form-button-group">
                         <NavLink
-                            to="/admin/update-password"
+                            to="/update-password"
                             className="btn-reset self-end text-center"
                             style={{ display: editable ? "none" : "block" }}
                             onClick={toggleEdit}

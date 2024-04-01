@@ -3,16 +3,20 @@ import VisibilityIcon from "@mui/icons-material/Visibility"
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { updateAdminPassword } from "../../../../redux/actions/adminActions"
+import { updateUserPassword } from "@/redux/actions/userActions"
+import { selectAdminData, selectUserRole } from "@/redux/slices/userSlice"
 import { Password } from "@phosphor-icons/react"
+import { showToast } from "@/utils/toast"
 
 const AdminPasswordUpdate = () => {
     const navigate = useNavigate()
-    const user = useSelector((state) => state.user.user)
+    const user = useSelector(selectAdminData)
+    const userRole = useSelector(selectUserRole)
     const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormData] = useState({
+        role: userRole,
+        oldPassword: "",
         newPassword: "",
-        confirmPassword: "",
         email: user.email,
     })
 
@@ -20,12 +24,27 @@ const AdminPasswordUpdate = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
+    const validateForm = () => {
+        if (
+            !formData.oldPassword ||
+            !formData.newPassword ||
+            !formData.confirmPassword
+        ) {
+            showToast("Please fill all fields", "error")
+            return false
+        } else if (formData.newPassword !== formData.confirmPassword) {
+            showToast("Passwords do not match", "error")
+            return false
+        }
+        return true
+    }
+
     const update = async (e) => {
         e.preventDefault()
-        delete formData.confirmPassword
-        const isUpdated = await updateAdminPassword(formData)
+        if (!validateForm()) return
+        const isUpdated = await updateUserPassword(formData)
         if (isUpdated) {
-            navigate("/admin/profile")
+            navigate("/profile")
         }
     }
 
@@ -39,8 +58,20 @@ const AdminPasswordUpdate = () => {
             </div>
             <div className="form-card-parent">
                 <form onSubmit={update} className="form-card">
+                    <div className="w-full">
+                        <label className="input-label">Old Password</label>
+                        <input
+                            onChange={handleChanges}
+                            value={formData.oldPassword}
+                            type="text"
+                            className="input-field"
+                            name="oldPassword"
+                            placeholder="Old Password"
+                            required
+                        />
+                    </div>
                     <div className="relative w-full">
-                        <p className="input-label">New Password</p>
+                        <label className="input-label">New Password</label>
                         <input
                             onChange={handleChanges}
                             value={formData.newPassword}
@@ -63,7 +94,7 @@ const AdminPasswordUpdate = () => {
                         )}
                     </div>
                     <div className="relative w-full">
-                        <p className="">Confirm Password</p>
+                        <label className="input-label">Confirm Password</label>
                         <input
                             onChange={handleChanges}
                             value={formData.confirmPassword}

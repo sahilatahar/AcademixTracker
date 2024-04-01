@@ -1,25 +1,11 @@
 import PropTypes from "prop-types"
-import adminAvatar from "../../assets/admin.png"
-import facultyAvatar from "../../assets/faculty.png"
-import studentAvatar from "../../assets/student.png"
+import defaultAvatar from "@/assets/avatar.png"
 import { useRef } from "react"
 
-function ImageInput({ onDone, type, avatar, disabled = true }) {
+function ImageInput({ onDone, avatar, disabled = true }) {
     const inputRef = useRef(null)
     const handleImageError = (e) => {
-        switch (type) {
-            case "admin":
-                e.target.src = adminAvatar
-                break
-            case "faculty":
-                e.target.src = facultyAvatar
-                break
-            case "student":
-                e.target.src = studentAvatar
-                break
-            default:
-                break
-        }
+        e.target.src = defaultAvatar
     }
 
     const handleClick = () => {
@@ -52,6 +38,7 @@ function ImageInput({ onDone, type, avatar, disabled = true }) {
             {disabled && (
                 <button
                     onClick={handleClick}
+                    type="button"
                     className="w-full rounded-lg border border-gray-500 px-4 py-2 font-semibold"
                 >
                     Change Image
@@ -63,8 +50,7 @@ function ImageInput({ onDone, type, avatar, disabled = true }) {
 
 ImageInput.propTypes = {
     onDone: PropTypes.func.isRequired,
-    type: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
     disabled: PropTypes.bool,
 }
 

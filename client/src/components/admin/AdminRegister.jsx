@@ -1,26 +1,19 @@
 import { Eye, EyeSlash, UserGear } from "@phosphor-icons/react"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { addAdmin, getDepartments } from "../../../redux/actions/adminActions"
-import ImageInput from "../../common/ImageInput"
-import { showToast } from "../../../utils/toast"
-import Select from "react-select"
+import { useState } from "react"
+import { registerAdmin } from "@/redux/actions/adminActions"
+import ImageInput from "@/components/common/ImageInput"
+import { showToast } from "@/utils/toast"
 
-const AddAdmin = () => {
-    const dispatch = useDispatch()
-    const departments = useSelector((state) => state.admin.departments)
+const AdminRegister = () => {
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormData] = useState({
-        name: "",
         dob: "",
+        name: "",
         email: "",
-        department: "",
-        contactNumber: "",
         avatar: "",
-        joiningDate: "",
         password: "",
-        username: "",
+        contactNumber: "",
     })
 
     const togglePassword = () => {
@@ -34,21 +27,8 @@ const AddAdmin = () => {
         })
     }
 
-    const handleDepartmentChange = (data) => {
-        setFormData({
-            ...formData,
-            department: data.value,
-        })
-    }
-
     const validateForm = () => {
-        if (!formData.avatar) {
-            showToast("Avatar is required", "error")
-            return false
-        } else if (!formData.department) {
-            showToast("Select Department", "error")
-            return false
-        } else if (formData.password.toString().length < 6) {
+        if (formData.password.toString().length < 6) {
             showToast("Password must be at least 6 characters long", "error")
             return false
         } else if (formData.contactNumber.toString().length !== 10) {
@@ -62,19 +42,16 @@ const AddAdmin = () => {
         e.preventDefault()
         if (!validateForm()) return
         setLoading(true)
-        const isAdded = await addAdmin(formData, dispatch)
+        const isAdded = await registerAdmin(formData)
         if (isAdded) {
             setLoading(false)
             setFormData({
-                name: "",
                 dob: "",
+                name: "",
                 email: "",
-                department: "",
-                contactNumber: "",
                 avatar: "",
-                joiningDate: "",
                 password: "",
-                username: "",
+                contactNumber: "",
             })
         }
     }
@@ -86,15 +63,11 @@ const AddAdmin = () => {
         })
     }
 
-    useEffect(() => {
-        getDepartments(dispatch)
-    }, [dispatch])
-
     return (
         <div className="outlet-page">
             <div className="outlet-header">
                 <UserGear size={32} weight="fill" />
-                <h1>Add Admin</h1>
+                <h1>Admin Registration</h1>
             </div>
             <form
                 className="outlet-form"
@@ -120,6 +93,7 @@ const AddAdmin = () => {
                                 placeholder="John Doe"
                                 className="input-field"
                                 name="name"
+                                value={formData.name}
                                 onChange={handleChanges}
                                 required
                             />
@@ -131,31 +105,7 @@ const AddAdmin = () => {
                                 placeholder="johndoe@gmail.com"
                                 className="input-field"
                                 name="email"
-                                onChange={handleChanges}
-                                required
-                            />
-                        </div>
-                        <div className="w-full">
-                            <label className="input-label">Department</label>
-                            <Select
-                                name="department"
-                                classNamePrefix="react-select"
-                                placeholder="Select Department"
-                                onChange={handleDepartmentChange}
-                                options={departments.map((department) => ({
-                                    value: department._id,
-                                    label: department.name,
-                                }))}
-                                required
-                            />
-                        </div>
-                        <div className="w-full">
-                            <label className="input-label">Username</label>
-                            <input
-                                type="text"
-                                placeholder="Your Username"
-                                className="input-field"
-                                name="username"
+                                value={formData.email}
                                 onChange={handleChanges}
                                 required
                             />
@@ -167,6 +117,7 @@ const AddAdmin = () => {
                                 type={showPassword ? "text" : "password"}
                                 className="input-field"
                                 name="password"
+                                value={formData.password}
                                 onChange={handleChanges}
                                 required
                             />
@@ -201,18 +152,7 @@ const AddAdmin = () => {
                             />
                         </div>
                         <div className="w-full">
-                            <p className="">Joining Date</p>
-                            <input
-                                type="date"
-                                className="input-field"
-                                name="joiningDate"
-                                value={formData.joiningDate}
-                                onChange={handleChanges}
-                                required
-                            />
-                        </div>
-                        <div className="w-full">
-                            <p className="">Date of Birth</p>
+                            <label className="input-label">Date of Birth</label>
                             <input
                                 type="date"
                                 className="input-field"
@@ -241,4 +181,4 @@ const AddAdmin = () => {
     )
 }
 
-export default AddAdmin
+export default AdminRegister

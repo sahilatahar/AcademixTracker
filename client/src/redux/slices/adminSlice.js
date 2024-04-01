@@ -16,13 +16,13 @@ const adminSlice = createSlice({
         },
         updateAdmin: (state, action) => {
             const updatedAdmin = action.payload
-            state.admins = state.admins.map((admin) =>
+            state.admins = state.admins?.map((admin) =>
                 admin._id === updatedAdmin._id ? updatedAdmin : admin,
             )
         },
         deleteAdmin: (state, action) => {
             const id = action.payload
-            state.admins = state.admins.filter((admin) => admin._id !== id)
+            state.admins = state.admins?.filter((admin) => admin._id !== id)
         },
     },
 })

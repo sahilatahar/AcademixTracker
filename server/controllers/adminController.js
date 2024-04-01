@@ -9,7 +9,7 @@ export const adminLogin = async (req, res) => {
 				.json({ message: "Please fill all the fields" })
 		}
 		const { admin, token } = await adminService.login(email, password)
-		return res.status(200).json({ admin, token })
+		return res.status(200).json({ userData: admin, token })
 	} catch (error) {
 		return res.status(500).json({ message: error.message })
 	}
@@ -28,7 +28,7 @@ export const getAdminById = async (req, res) => {
 	try {
 		const id = req.params.id
 		const admin = await adminService.getAdminById(id)
-		return res.status(200).json({ admin })
+		return res.status(200).json(admin)
 	} catch (error) {
 		return res.status(500).json({ message: error.message })
 	}

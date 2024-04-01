@@ -21,7 +21,7 @@ const login = async (email, password) => {
 				id: admin._id,
 			},
 			process.env.JWT_SECRET,
-			{ expiresIn: "3h" }
+			{ expiresIn: "1d" }
 		)
 		return { admin, token }
 	} catch (error) {
@@ -119,9 +119,9 @@ const updateAdmin = async (adminData) => {
 	}
 }
 
-const updateAdminPassword = async ({ _id: id, oldPassword, newPassword }) => {
+const updateAdminPassword = async ({ email, oldPassword, newPassword }) => {
 	try {
-		const admin = await Admin.findById(id)
+		const admin = await Admin.findOne({ email })
 		if (!admin) {
 			throw new Error("Admin not found")
 		}

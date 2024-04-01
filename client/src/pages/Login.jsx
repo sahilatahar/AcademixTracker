@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import { useDispatch } from "react-redux"
-import { adminLogin } from "../../../redux/actions/adminActions"
+import { loginUser } from "@/redux/actions/userActions"
 import { Eye, EyeSlash } from "@phosphor-icons/react"
-import { showToast } from "../../../utils/toast"
+import { showToast } from "@/utils/toast"
+import Select from "react-select"
 
 const AdminLogin = () => {
     const [showPassword, setShowPassword] = useState(false)
@@ -11,17 +12,33 @@ const AdminLogin = () => {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        username: "",
+        email: "",
         password: "",
+        role: "",
     })
+
+    const options = [
+        { value: "admin", label: "Admin" },
+        { value: "student", label: "Student" },
+        { value: "faculty", label: "Faculty" },
+        { value: "hod", label: "HOD" },
+        { value: "course-supervisor", label: "Course Supervisor" },
+    ]
 
     const handleChanges = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
+    const handleRoleChange = (selectedOption) => {
+        setFormData({ ...formData, role: selectedOption.value })
+    }
+
     const validateForm = () => {
-        if (!formData.username) {
-            showToast("Username is required", "error")
+        if (!formData.role) {
+            showToast("Select role", "error")
+            return false
+        } else if (!formData.email) {
+            showToast("Email is required", "error")
             return false
         } else if (!formData.password) {
             showToast("Password is required", "error")
@@ -36,9 +53,9 @@ const AdminLogin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!validateForm()) return
-        const isLoggedIn = await adminLogin(formData, dispatch)
+        const isLoggedIn = await loginUser(formData, dispatch)
         if (isLoggedIn) {
-            navigate("/admin/dashboard")
+            navigate("/")
         }
     }
 
@@ -53,14 +70,24 @@ const AdminLogin = () => {
                 className="flex w-full flex-col items-center justify-center gap-4 p-4 md:w-[500px]"
             >
                 <h1 className="pb-8 text-4xl font-semibold text-black">
-                    Admin Login
+                    Login
                 </h1>
                 <div className="w-full">
-                    <label className="input-label">Username</label>
+                    <label className="input-label">Select role</label>
+                    <Select
+                        options={options}
+                        classNamePrefix="react-select"
+                        placeholder="Select role"
+                        isSearchable={false}
+                        onChange={handleRoleChange}
+                    />
+                </div>
+                <div className="w-full">
+                    <label className="input-label">Email</label>
                     <input
                         type="text"
-                        placeholder="Username"
-                        name="username"
+                        placeholder="email"
+                        name="email"
                         className="input-field"
                         onChange={handleChanges}
                     />

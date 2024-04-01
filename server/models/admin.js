@@ -15,12 +15,8 @@ const AdminSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	department: {
-		type: String,
-		required: true,
-	},
 	dob: {
-		type: Date,
+		type: String,
 		required: true,
 	},
 	avatar: {
@@ -31,8 +27,8 @@ const AdminSchema = new Schema({
 		required: true,
 	},
 	createdAt: {
-		type: Date,
-		default: Date.now,
+		type: String,
+		default: new Date().toISOString(),
 	},
 })
 

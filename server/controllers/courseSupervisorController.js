@@ -8,7 +8,7 @@ export const courseSupervisorLogin = async (req, res) => {
 				email,
 				password,
 			})
-		res.status(200).json({ courseSupervisor, token })
+		res.status(200).json({ userData: courseSupervisor, token })
 	} catch (error) {
 		console.log("Error in courseSupervisorLogin: ", error.message)
 		res.status(500).json({ message: "Something went wrong" })

@@ -1,25 +1,24 @@
-import { showToast } from "../../utils/toast"
-import * as api from "../api/"
+import { showToast } from "@/utils/toast"
+import * as api from "@/redux/api/"
 import {
-    addAdmin as addAdminAction,
     deleteAdmin as deleteAdminAction,
     setAdmins as setAdminsAction,
     updateAdmin as updateAdminAction,
-} from "../slices/adminSlice"
+} from "@/redux/slices/adminSlice"
 
 export const fetchAdmins = async (dispatch) => {
     try {
-        const { data } = await api.mins()
+        const { data } = await api.getAdmins()
         dispatch(setAdminsAction(data.admins))
     } catch (error) {
+        console.log(error)
         showToast(error.response.data.message, "error")
     }
 }
 
-export const addAdmin = async (formData, dispatch) => {
+export const registerAdmin = async (formData) => {
     try {
-        const { data } = await api.addAdmin(formData)
-        dispatch(addAdminAction(data.admin))
+        await api.registerAdmin(formData)
         showToast("Admin added successfully", "success")
         return true
     } catch (error) {
@@ -35,6 +34,7 @@ export const updateAdmin = async (formData, dispatch) => {
         showToast("Admin updated successfully", "success")
         return true
     } catch (error) {
+        console.log(error)
         showToast(error.response.data.message, "error")
         return false
     }
@@ -46,6 +46,7 @@ export const updateAdminPassword = async (formData) => {
         showToast("Password updated successfully", "success")
         return true
     } catch (error) {
+        console.log(error)
         showToast(error.response.data.message, "error")
         return false
     }

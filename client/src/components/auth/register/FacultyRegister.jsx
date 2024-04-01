@@ -209,7 +209,7 @@ const FacultyRegister = () => {
                             />
                         </div>
                         <div className="w-full">
-                            <p className="">Joining Date</p>
+                            <label className="input-label">Joining Date</label>
                             <input
                                 type="date"
                                 className="input-field"
@@ -220,7 +220,7 @@ const FacultyRegister = () => {
                             />
                         </div>
                         <div className="w-full">
-                            <p className="">Date of Birth</p>
+                            <label className="input-label">Date of Birth</label>
                             <input
                                 type="date"
                                 className="input-field"

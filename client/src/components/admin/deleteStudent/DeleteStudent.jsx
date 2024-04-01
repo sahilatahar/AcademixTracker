@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { getDepartments } from "../../../redux/x/x/actions/adminActions"
 import Header from "../Header"
-import Sidebar from "../Sidebar"
+import Sidebar from "../../Sidebar"
 import Body from "./Body"
 
 const DeleteStudent = () => {

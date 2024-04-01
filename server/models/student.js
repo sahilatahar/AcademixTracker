@@ -54,12 +54,12 @@ const StudentSchema = new Schema({
 		required: true,
 	},
 	dob: {
-		type: Date,
+		type: String,
 		required: true,
 	},
 	createdAt: {
-		type: Date,
-		default: Date.now,
+		type: String,
+		default: new Date().toISOString(),
 	},
 })
 

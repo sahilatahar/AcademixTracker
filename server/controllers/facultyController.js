@@ -7,7 +7,7 @@ export const facultyLogin = async (req, res) => {
 			email,
 			password,
 		})
-		res.status(200).json({ faculty, token })
+		res.status(200).json({ userData: faculty, token })
 	} catch (error) {
 		console.log("Error in facultyLogin: ", error.message)
 		res.status(500).json({ message: "Something went wrong" })

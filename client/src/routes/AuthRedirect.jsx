@@ -2,18 +2,17 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import PropTypes from "prop-types"
 import { useEffect, useState } from "react"
-import { fetchUser, getUserDecodedData } from "../redux/actions/userActions"
-import { setRole } from "../redux/slices/userSlice"
-import { LoadingFullScreen } from "../components/common/Loading"
+import { fetchUser, getUserDecodedData } from "@/redux/actions/userActions"
+import { LoadingFullScreen } from "@/components/common/Loading"
 
 function AuthRedirect({ Component }) {
-    const user = useSelector((state) => state.user.user)
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated)
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (user === null) {
+        if (!isAuthenticated) {
             const decodedData = getUserDecodedData()
             if (decodedData === null) {
                 setLoading(false)
@@ -22,19 +21,17 @@ function AuthRedirect({ Component }) {
 
             const { id, role } = decodedData
 
-            dispatch(setRole(role))
-
             if (id && role) {
                 fetchUser(id, role, dispatch).then((res) => {
                     if (res) {
+                        navigate("/")
+                    } else {
                         setLoading(false)
-                        navigate(`/${role}/dashboard`)
-                        return
                     }
                 })
             }
         }
-    }, [user, dispatch, navigate])
+    }, [dispatch, navigate, isAuthenticated])
 
     if (loading) {
         return <LoadingFullScreen />

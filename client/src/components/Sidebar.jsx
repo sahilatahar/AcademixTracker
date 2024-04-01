@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { showToast } from "../../utils/toast"
-import { sidebarItems } from "../../constants/SidebarItems"
+import { useDispatch, useSelector } from "react-redux"
+import { showToast } from "../utils/toast"
+import sidebarItems from "../constants/SidebarItems"
 import { List, SignOut } from "@phosphor-icons/react"
-import { getUserDecodedData, logoutUser } from "../../redux/actions/userActions"
+import { getUserDecodedData, logoutUser } from "../redux/actions/userActions"
+import { selectUserRole } from "@/redux/slices/userSlice"
 
 const isNotActiveStyle =
     "flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize hover:bg-gray-200 py-2 my-1"
@@ -16,6 +17,7 @@ const Sidebar = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const sidebarRef = useRef(null)
+    const userRole = useSelector(selectUserRole)
 
     const toggleSidebar = () =>
         sidebarRef.current.classList.toggle("-translate-x-full")
@@ -23,7 +25,7 @@ const Sidebar = () => {
     const logout = () => {
         showToast("Logged out successfully", "success")
         logoutUser(dispatch)
-        navigate("/admin/login")
+        navigate("/login")
     }
 
     useEffect(() => {
@@ -50,7 +52,7 @@ const Sidebar = () => {
                 <List size={32} weight="fill" />
             </button>
             <div className="h-screen overflow-y-scroll py-4 scrollbar-thin scrollbar-track-white scrollbar-thumb-gray-300">
-                {sidebarItems.map((item, index) => {
+                {sidebarItems[userRole].map((item, index) => {
                     if (Object.keys(item).length === 0) {
                         return <div key={index} className="py-3"></div>
                     }

@@ -34,8 +34,8 @@ const CourseSchema = new Schema({
 		},
 	],
 	createdAt: {
-		type: Date,
-		default: Date.now,
+		type: String,
+		default: new Date().toISOString(),
 	},
 })
 

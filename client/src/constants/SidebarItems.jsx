@@ -103,3 +103,102 @@ export const sidebarItems = [
     },
     {},
 ]
+
+const adminSidebarItems = [
+    {
+        title: "Dashboard",
+        icon: <House size={24} weight="fill" />,
+        path: "/",
+    },
+    {
+        title: "Profile",
+        icon: <UserSquare size={24} weight="fill" />,
+        path: "/profile",
+    },
+    {}, // Empty object for creating a space
+    {
+        title: "Create Notice",
+        icon: <Plus size={24} weight="fill" />,
+        path: "/create-notice",
+    },
+    {},
+    {
+        title: "Admin List",
+        icon: <User size={24} weight="fill" />,
+        path: "/admin-list",
+    },
+    {
+        title: "Admin Register",
+        icon: <Plus size={24} weight="fill" />,
+        path: "/register-admin",
+    },
+    {
+        title: "Delete Admin",
+        icon: <Trash size={24} weight="fill" />,
+        path: "/delete-admin",
+    },
+    {},
+    {
+        title: "Add Department",
+        icon: <Plus size={24} weight="fill" />,
+        path: "/add-department",
+    },
+    {
+        title: "Delete Department",
+        icon: <Trash size={24} weight="fill" />,
+        path: "/delete-department",
+    },
+    {},
+    {
+        title: "Faculty List",
+        icon: <UserGear size={24} weight="fill" />,
+        path: "/faculty-list",
+    },
+    {
+        title: "Add Faculty",
+        icon: <Plus size={24} weight="fill" />,
+        path: "/add-faculty",
+    },
+    {
+        title: "Delete Faculty",
+        icon: <Trash size={24} weight="fill" />,
+        path: "/delete-faculty",
+    },
+    {},
+    {
+        title: "Student List",
+        icon: <Person size={24} weight="fill" />,
+        path: "/student-list",
+    },
+    {
+        title: "Add Students",
+        icon: <Plus size={24} weight="fill" />,
+        path: "/add-student",
+    },
+    {
+        title: "Delete Student",
+        icon: <Trash size={24} weight="fill" />,
+        path: "/delete-student",
+    },
+    {},
+    {
+        title: "Subjects",
+        icon: <BookOpenText size={24} weight="fill" />,
+        path: "/subject-list",
+    },
+    {
+        title: "Add Subject",
+        icon: <Plus size={24} weight="fill" />,
+        path: "/add-subject",
+    },
+    {
+        title: "Delete Subject",
+        icon: <Trash size={24} weight="fill" />,
+        path: "/delete-subject",
+    },
+    {},
+]
+
+export default {
+    "admin": adminSidebarItems,
+}

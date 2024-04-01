@@ -10,19 +10,18 @@ API.interceptors.request.use((req) => {
     return req
 })
 
+export default API
+
 // * Admin APIs
 
 export const adminLogin = (formData) => API.post("/admin/login", formData)
 
 export const getAdmins = () => API.get("/admin/")
 
-export const addAdmin = (formData) => API.post("/admin/", formData)
+export const registerAdmin = (formData) => API.post("/admin/", formData)
 
 export const updateAdmin = (adminProfileData) =>
     API.put("/admin/", adminProfileData)
-
-export const updateAdminPassword = (formData) =>
-    API.put("/admin/update-password", formData)
 
 export const deleteAdmin = (id) => API.delete("/admin/" + id)
 
@@ -61,9 +60,6 @@ export const addCourseSupervisor = () => API.post("/course-supervisor/")
 export const updateCourseSupervisor = (formData) =>
     API.put("/course-supervisor/", formData)
 
-export const updateCourseSupervisorPassword = (formData) =>
-    API.put("course-supervisor/update-password/", formData)
-
 export const deleteCourseSupervisor = (id) =>
     API.delete("/course-supervisor/" + id)
 
@@ -91,9 +87,6 @@ export const addFaculty = (formData) => API.post("/faculty/", formData)
 
 export const updateFaculty = (formData) => API.put("/faculty/", formData)
 
-export const updateFacultyPassword = (formData) =>
-    API.put("/faculty/update-password", formData)
-
 export const deleteFaculty = (id) => API.delete("/faculty/" + id)
 
 // * HOD APIs
@@ -107,9 +100,6 @@ export const getHodById = (id) => API.get("/hod/" + id)
 export const hodRegister = (formData) => API.post("/hod/", formData)
 
 export const updateHod = (formData) => API.put("/hod/", formData)
-
-export const updateHodPassword = (formData) =>
-    API.put("/hod/update-password/", formData)
 
 export const deleteHod = (id) => API.delete("/hod/" + id)
 
@@ -157,9 +147,6 @@ export const getStudentById = (id) => API.get("/student/" + id)
 export const studentRegister = (formData) => API.post("/student/", formData)
 
 export const updateStudent = (formData) => API.put("/student/", formData)
-
-export const updateStudentPassword = (formData) =>
-    API.put("/student/update-password/", formData)
 
 export const deleteStudent = (id) => API.delete("/student/" + id)
 

@@ -18,7 +18,16 @@ const studentLogin = async (email, password) => {
 			throw new Error("Password is incorrect")
 		}
 
-		return student
+		const token = jwt.sign(
+			{
+				role: "student",
+				id: student._id,
+			},
+			process.env.JWT_SECRET,
+			{ expiresIn: "1d" }
+		)
+
+		return { student, token }
 	} catch (error) {
 		throw error
 	}

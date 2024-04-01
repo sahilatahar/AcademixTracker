@@ -19,13 +19,19 @@ const authRoleMiddleware = async (req, res, next) => {
 		// Verifying the token
 		const decodedData = jwt.verify(token, process.env.JWT_SECRET)
 		req.userId = decodedData?.id
-		const userRole = decodedData?.role
+		let userRole = decodedData?.role
 
+		if (userRole === "admin") {
+			next()
+			return
+		}
+
+		userRole = "/" + userRole
 		// Getting the route from the request
-		const route = req.baseUrl
+		let route = req.baseUrl.split("/")[2]
 
 		// Checking if the user role is allowed to access the route
-		if (!routePermissions[route].includes(userRole)) {
+		if (!routePermissions[userRole].includes(route)) {
 			return res.status(403).json({
 				message: "You are not authorized to access this route.",
 			})
@@ -47,7 +53,6 @@ const authRoleMiddleware = async (req, res, next) => {
 
 		next()
 	} catch (error) {
-		console.log(error)
 		return res.status(500).json({
 			message:
 				"The token provided is invalid or has expired. Please log in again.",
