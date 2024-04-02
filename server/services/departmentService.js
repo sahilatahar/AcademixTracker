@@ -2,7 +2,7 @@ import Department from "../models/Department.js"
 
 const createDepartment = async ({ name, hod, description }) => {
 	try {
-		if (!name || !hod || !description) {
+		if (!name || !description) {
 			throw new Error("All fields are required")
 		}
 		const departmentExists = await Department.findOne({ name })

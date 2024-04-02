@@ -34,7 +34,7 @@ const departmentSlice = createSlice({
 export const selectDepartments = (state) => state.department.departments
 
 export const selectDepartmentById = (state, id) =>
-    state.department.departments.find((department) => department._id === id)
+    state.department?.departments?.find((department) => department._id === id)
 
 export const {
     addDepartment,

@@ -1,7 +1,6 @@
 import { showToast } from "../../utils/toast"
 import * as api from "../api"
 import {
-    addDepartment as addDepartmentAction,
     deleteDepartment as deleteDepartmentAction,
     setDepartments as setDepartmentsAction,
     updateDepartment as updateDepartmentAction,
@@ -16,10 +15,9 @@ export const fetchDepartments = async (dispatch) => {
     }
 }
 
-export const addDepartment = async (formData, dispatch) => {
+export const createDepartment = async (formData) => {
     try {
-        const { data } = await api.addDepartment(formData)
-        dispatch(addDepartmentAction(data.department))
+        await api.createDepartment(formData)
         showToast("Department added successfully", "success")
         return true
     } catch (error) {
@@ -47,6 +45,7 @@ export const deleteDepartment = async (id, dispatch) => {
         showToast("Department deleted successfully", "success")
         return true
     } catch (error) {
+        console.log(error)
         showToast(error.response.data.message, "error")
         return false
     }

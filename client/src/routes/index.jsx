@@ -13,7 +13,9 @@ import AdminList from "@/components/admin/AdminList"
 import AdminRegister from "@/components/admin/AdminRegister"
 import AdminDelete from "../components/admin/DeleteAdmin"
 
-// import AdminPasswordUpdate from "../components/admin/PasswordUpdate"
+import CreateDepartment from "@/components/department/CreateDepartment"
+import DepartmentList from "@/components/department/DepartmentList"
+import UpdateDepartment from "@/components/department/UpdateDepartment"
 
 import ProtectedRoute from "./ProtectedRoute"
 import AuthRedirect from "./AuthRedirect"
@@ -51,6 +53,18 @@ const routes = createBrowserRouter([
             {
                 path: "delete-admin",
                 element: <AdminDelete />,
+            },
+            {
+                path: "create-department",
+                element: <CreateDepartment />,
+            },
+            {
+                path: "department-list",
+                element: <DepartmentList />,
+            },
+            {
+                path: "update-department/:id",
+                element: <UpdateDepartment />,
             },
             {
                 path: "*",

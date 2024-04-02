@@ -139,14 +139,14 @@ const adminSidebarItems = [
     },
     {},
     {
-        title: "Add Department",
+        title: "Create Department",
         icon: <Plus size={24} weight="fill" />,
-        path: "/add-department",
+        path: "/create-department",
     },
     {
-        title: "Delete Department",
-        icon: <Trash size={24} weight="fill" />,
-        path: "/delete-department",
+        title: "Department List",
+        icon: <Plus size={24} weight="fill" />,
+        path: "/department-list",
     },
     {},
     {
@@ -200,5 +200,5 @@ const adminSidebarItems = [
 ]
 
 export default {
-    "admin": adminSidebarItems,
+    admin: adminSidebarItems,
 }

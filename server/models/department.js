@@ -10,7 +10,7 @@ const DepartmentSchema = new Schema({
 	hod: {
 		type: Schema.Types.ObjectId,
 		ref: "Hod",
-		required: true,
+		default: null,
 	},
 	description: {
 		type: String,

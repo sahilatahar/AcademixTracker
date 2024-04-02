@@ -69,7 +69,7 @@ export const getDepartments = () => API.get("/department/")
 
 export const getDepartmentById = (id) => API.get("/department/" + id)
 
-export const addDepartment = (formData) => API.post("/department/", formData)
+export const createDepartment = (formData) => API.post("/department/", formData)
 
 export const updateDepartment = (formData) => API.put("/department", formData)
 
